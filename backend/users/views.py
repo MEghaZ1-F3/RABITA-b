@@ -2,7 +2,7 @@ from django.http import JsonResponse
 from .models import User
 
 
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.csrf import csrf_exempt
 import json
 @csrf_exempt
@@ -88,6 +88,13 @@ def student_list(request):
         })
 
     return JsonResponse(data, safe=False)
+def logout_view(request):
+
+    logout(request)
+
+    return JsonResponse({
+        'message': 'Logout successful'
+    })
 def me_view(request):
 
     if not request.user.is_authenticated:

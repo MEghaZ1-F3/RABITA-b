@@ -4,8 +4,6 @@ from .views import my_assignments
 
 urlpatterns = [
     path(
-        'api/my-assignments/',
-        my_assignments,
-        name='my-assignments'
+        'api/my-assignments/', my_assignments,name='my-assignments'
     ),
 ]
