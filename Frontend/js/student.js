@@ -32,7 +32,41 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error("Student Data Error:", error);
     }
   }
+  async function loadAttendance() {
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/my-attendance/", {
+        credentials: "include",
+      });
+
+      const data = await response.json();
+
+      console.log("Attendance Data:", data);
+      const attendanceBody = document.getElementById("attendance-body");
+
+      attendanceBody.innerHTML = "";
+
+      data.records.forEach(function (record) {
+        const absent = record.total_classes - record.present_classes;
+
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+        <td>${record.subject}</td>
+        <td>${record.total_classes}</td>
+        <td>${record.present_classes}</td>
+        <td>${absent}</td>
+        <td>${record.percentage}%</td>`;
+
+        attendanceBody.appendChild(row);
+      });
+      document.getElementById("attendance-value").textContent =
+        data.overall_percentage + "%";
+    } catch (error) {
+      console.error("Attendance Error:", error);
+    }
+  }
   loadStudentData();
+  loadAttendance();
 
   console.log("Student Dashboard Loaded");
   /* Dashboard Cards*/
