@@ -1,0 +1,449 @@
+:root {
+    --bg: #faf7f2;
+    --card-bg: #ffffff;
+    --text-primary: #23201d;
+    --text-muted: #827b73;
+    --accent: #d88c78;
+    --accent-hover: #c47662;
+    --accent-soft: rgba(216, 140, 120, 0.12);
+    --border: #ece6dc;
+    --sidebar-width: 250px;
+    --transition: 0.2s ease;
+}
+
+/* 2. Reset (*) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 3. Body */
+body {
+    min-height: 100vh;
+    display: flex;
+    background-color: var(--bg);
+    color: var(--text-primary);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    line-height: 1.5;
+}
+
+/* 4. Sidebar */
+.sidebar {
+    width: var(--sidebar-width);
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    background-color: var(--card-bg);
+    border-right: 1px solid var(--border);
+    padding: 2.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+/* 5. Sidebar logo */
+.sidebar .logo {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    margin-bottom: 2.5rem;
+    padding-left: 0.75rem;
+}
+
+/* 6. Sidebar navigation */
+.sidebar-nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.sidebar-nav a {
+    display: block;
+    padding: 0.8rem 1rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all var(--transition);
+}
+
+/* 7. Navigation hover/active */
+.sidebar-nav a:hover,
+.sidebar-nav a.active {
+    background-color: var(--accent-soft);
+    color: var(--accent-hover);
+    font-weight: 600;
+    transform: translateX(3px);
+}
+
+/* 8. Dashboard main */
+.dashboard-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+/* 9. Top navbar */
+.top-navbar {
+    height: 70px;
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.welcome-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+/* 10. Navbar buttons */
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.navbar-actions button {
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition);
+}
+
+.navbar-actions button:hover {
+    background-color: var(--accent-soft);
+    border-color: var(--accent);
+    transform: translateY(-1px);
+}
+
+/* 11. Main content */
+.main-content {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* 12. Welcome section */
+.welcome-section h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.35rem;
+}
+
+.welcome-section p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* 13. Summary cards */
+.summary-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+.summary-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all var(--transition);
+}
+
+.summary-card h3 {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    margin-bottom: 0.6rem;
+}
+
+.summary-card .card-number {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+}
+
+/* 14. Summary card hover */
+.summary-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+    box-shadow: 0 8px 20px rgba(216, 140, 120, 0.15);
+}
+
+/* 15. Shared Panel Containers */
+.recent-student-activity,
+.my-attendance,
+.My-assignments,
+.recent-notices,
+.student-results {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.75rem;
+}
+
+.recent-student-activity h3,
+.my-attendance h3,
+.My-assignments h3,
+.recent-notices h3,
+.student-results h3 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+}
+
+/* 16. Activity items */
+.activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.activity-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.2rem;
+    background-color: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: border-color var(--transition);
+}
+
+.activity-item:hover {
+    border-color: var(--accent);
+}
+
+.activity-item span:first-child {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.activity-item span:last-child {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+/* 17. Tables & Horizontal scroll */
+.my-attendance,
+.My-assignments {
+    overflow-x: auto;
+}
+
+.my-attendance table,
+.My-assignments table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.my-attendance th,
+.my-attendance td,
+.My-assignments th,
+.My-assignments td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.my-attendance th,
+.My-assignments th {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+/* 18. Table row hover */
+.my-attendance tbody tr,
+.My-assignments tbody tr {
+    transition: background-color var(--transition);
+}
+
+.my-attendance tbody tr:hover,
+.My-assignments tbody tr:hover {
+    background-color: var(--accent-soft);
+}
+
+/* 19. Action button */
+.view-btn {
+    background-color: var(--accent-soft);
+    color: var(--accent-hover);
+    border: 1px solid rgba(216, 140, 120, 0.3);
+    border-radius: 6px;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.view-btn:hover {
+    background-color: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+}
+
+/* 20. Notices Section */
+.notice-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.notice-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.2rem;
+    background-color: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    transition: border-color var(--transition);
+}
+
+.notice-item:hover {
+    border-color: var(--accent);
+}
+
+.notice-item h4 {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.notice-item span {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+/* Results Section */
+.student-results {
+    display: none;
+}
+
+/* 21. Responsive / Mobile design */
+@media (max-width: 1024px) {
+    .summary-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+/* Profile Section */
+.student-profile {
+    display: none;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.75rem;
+}
+
+.student-profile h3 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.35rem;
+    margin-bottom: 1.25rem;
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.profile-item {
+    padding: 1rem;
+    background-color: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+.profile-item span {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 0.4rem;
+}
+
+.profile-item strong {
+    font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+        .profile-grid {
+        grid-template-columns: 1fr;
+    }
+    body {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 1.5rem;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .sidebar .logo {
+        margin-bottom: 1rem;
+        padding-left: 0;
+    }
+
+    .sidebar-nav ul {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .main-content {
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+
+    .summary-cards {
+        grid-template-columns: 1fr;
+    }
+}
+/* Hide inner dashboard sections initially */
+
+.student-profile,
+.my-attendance,
+.My-assignments,
+.student-results,
+.recent-notices {
+    display: none;
+}

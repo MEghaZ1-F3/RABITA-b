@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Faculty Dashboard</title>
+    <link rel="stylesheet" href="css/faculty-dashboard.css" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <h2 class="logo">Rabita</h2>
+      <nav class="sidebar-nav">
+        <ul>
+          <li><a href="#dashboard" class="active">Dashboard</a></li>
+          <li><a href="#students">Students</a></li>
+          <li><a href="#attendance">Attendance</a></li>
+          <li><a href="#assignments">Assignments</a></li>
+          <li><a href="#notices">Notices</a></li>
+          <li><a href="#reports">Reports</a></li>
+          <li><a href="#logout">Logout</a></li>
+        </ul>
+      </nav>
+    </aside>
+    <main class="dashboard-main">
+      <header class="top-navbar">
+        <span class="welcome-text">Welcome, Faculty</span>
+        <div class="navbar-actions">
+          <button type="button" aria-label="Notifications">🔔</button>
+          <button type="button" aria-label="Profile">👤</button>
+        </div>
+      </header>
+      <div class="main-content">
+        <!-- Welcome Section -->
+        <section class="welcome-section">
+          <h1>Good Morning, Faculty</h1>
+          <p>Here's what's happening with your classes today.</p>
+        </section>
+        <section class="summary-cards">
+          <div class="summary-card">
+            <h3>My Students</h3>
+            <p class="card-number">0</p>
+          </div>
+          <div class="summary-card">
+            <h3>Today's Attendance</h3>
+            <p class="card-number">0</p>
+          </div>
+          <div class="summary-card">
+            <h3>Pending Tasks</h3>
+            <p class="card-number">0</p>
+          </div>
+          <div class="summary-card">
+            <h3>Notices</h3>
+            <p class="card-number">0</p>
+          </div>
+        </section>
+        <section class="recent-student-activity">
+          <h3>Recent Student Activity</h3>
+
+          <div class="activity-list">
+            <div class="activity-item">
+              <span>Assignment submitted by student</span>
+              <span>Today</span>
+            </div>
+            <div class="activity-item">
+              <span>Doubt raised in discussion forum</span>
+              <span>Today</span>
+            </div>
+            <div class="activity-item">
+              <span>Leave application received</span>
+              <span>Today</span>
+            </div>
+          </div>
+        </section>
+        <section class="attendance-overview">
+          <h3>Attendance Overview</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Class / Section</th>
+                <th>Subject</th>
+                <th>Total Present</th>
+                <th>Total Absent</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>CSE - 4A</td>
+                <td>Data Science</td>
+                <td>38</td>
+                <td>2</td>
+                <td>
+                  <span class="badge badge-approved">Completed</span>
+                </td>
+                <td>
+                  <button class="view-btn">View</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <section class="pending-assignments">
+          <h3>Pending Assignments</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Assignment Title</th>
+                <th>Subject</th>
+                <th>Due Date</th>
+                <th>Submissions</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Machine Learning Basics</td>
+                <td>Data Science</td>
+                <td>30 Sep 2026</td>
+                <td>32 / 40</td>
+                <td>
+                  <button class="view-btn">View</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <section class="recent-notices">
+          <h3>Recent Notices</h3>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>

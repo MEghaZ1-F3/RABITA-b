@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="css/student-dashboard.css" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <h2 class="logo">Rabita</h2>
+      <nav class="sidebar-nav">
+        <ul>
+          <li><a href="#dashboard" class="active">Dashboard</a></li>
+          <li><a href="#profile">Profile</a></li>
+          <li><a href="#attendance">Attendance</a></li>
+          <li><a href="#assignments">Assignments</a></li>
+          <li><a href="#results">Results</a></li>
+          <li><a href="#notices">Notices</a></li>
+          <li><a href="#logout" id="logout-link">Logout</a></li>
+        </ul>
+      </nav>
+    </aside>
+    <main class="dashboard-main">
+      <header class="top-navbar">
+        <span class="welcome-text">Welcome, Student</span>
+        <div class="navbar-actions">
+          <button type="button" aria-label="Notifications">🔔</button>
+          <button type="button" aria-label="Profile">👤</button>
+        </div>
+      </header>
+      <div class="main-content">
+        <section class="welcome-section">
+          <h1>Good Morning, Student</h1>
+          <p>Here's your academic overview for today.</p>
+        </section>
+        <section class="summary-cards">
+          <div class="summary-card">
+            <h3>Attendance</h3>
+            <p class="card-number" id="attendance-value">0%</p>
+          </div>
+          <div class="summary-card">
+            <h3>My Assignments</h3>
+            <p class="card-number" id="assignments-value">0</p>
+          </div>
+          <div class="summary-card">
+            <h3>Current Semester</h3>
+            <p class="card-number" id="semester-value">1</p>
+          </div>
+          <div class="summary-card">
+            <h3>CGPA</h3>
+            <p class="card-number" id="cgpa-value">0.0</p>
+          </div>
+        </section>
+        <section class="recent-student-activity">
+          <h3>Recent Activity</h3>
+
+          <div class="activity-list">
+            <div class="activity-item">
+              <span>Assignment submitted</span>
+              <span>Today</span>
+            </div>
+            <div class="activity-item">
+              <span>Attendance marked</span>
+              <span>Today</span>
+            </div>
+            <div class="activity-item">
+              <span>New notice</span>
+              <span>Today</span>
+            </div>
+          </div>
+        </section>
+        <section class="student-profile" id="profile">
+          <h3>My Profile</h3>
+
+          <div class="profile-grid">
+            <div class="profile-item">
+              <span>Name</span>
+              <strong id="student-name">Golu</strong>
+            </div>
+
+            <div class="profile-item">
+              <span>Student ID</span>
+              <strong id="student-id">MZ-001-MIN-27</strong>
+            </div>
+
+            <div class="profile-item">
+              <span>Branch</span>
+              <strong id="student-branch">Mining Engineering</strong>
+            </div>
+
+            <div class="profile-item">
+              <span>Semester</span>
+              <strong id="student-semester">4th Semester</strong>
+            </div>
+
+            <div class="profile-item">
+              <span>Entry Type</span>
+              <strong id="student-entry">Regular</strong>
+            </div>
+
+            <div class="profile-item">
+              <span>Admission Year</span>
+              <strong id="student-year">2026</strong>
+            </div>
+          </div>
+        </section>
+        <section class="my-attendance" id="attendance">
+          <h3>My Attendance</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Subject</th>
+                <th>Total Classes</th>
+                <th>Present</th>
+                <th>Absent</th>
+                <th>Attendance %</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Data Science</td>
+                <td>40</td>
+                <td>38</td>
+                <td>2</td>
+                <td>95%</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <section class="My-assignments" id="assignments">
+          <h3>My Assignments</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Assignment</th>
+                <th>Subject</th>
+                <th>Due Date</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Machine Learning Basics</td>
+                <td>Data Science</td>
+                <td>30 Sep 2026</td>
+                <td>Pending</td>
+                <td>
+                  <button type="button" class="view-btn">View</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <section class="student-results" id="results">
+          <h3>My Results</h3>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Semester</th>
+                <th>SGPA</th>
+                <th>Backlogs</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>4th Semester</td>
+                <td>8.2</td>
+                <td>0</td>
+                <td>Pass</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <section class="recent-notices" id="notices">
+          <h3>Recent Notices</h3>
+
+          <div class="notice-list">
+            <div class="notice-item">
+              <h4>Notice Title</h4>
+              <span>Date</span>
+              <button type="button" class="view-btn">View</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <script src="js/student.js"></script>
+  </body>
+</html>
