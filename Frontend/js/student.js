@@ -1,4 +1,16 @@
 document.addEventListener("DOMContentLoaded", function () {
+  async function checkLogin() {
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/me/", {
+        credentials: "include",
+      });
+      if (response.status === 401) {
+        window.location.href = "login.html";
+      }
+    } catch (error) {
+      window.location.href = "login.html";
+    }
+  }
   async function loadStudentData() {
     try {
       const response = await fetch("http://127.0.0.1:8000/api/me/", {
@@ -65,8 +77,109 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error("Attendance Error:", error);
     }
   }
+  async function loadAssignments() {
+    try {
+      const response = await fetch(
+        "http://127.0.0.1:8000/api/my-assignments/",
+        {
+          credentials: "include",
+        },
+      );
+
+      const data = await response.json();
+
+      console.log("Assignments Data:", data);
+
+      const assignmentSection = document.getElementById("assignments");
+
+      const assignmentTable = assignmentSection.querySelector("tbody");
+
+      assignmentTable.innerHTML = "";
+
+      data.assignments.forEach(function (assignment) {
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+                <td>${assignment.subject}</td>
+                <td>${assignment.title}</td>
+                <td>${assignment.due_date}</td>
+                <td>${assignment.submitted ? "Submitted" : "Pending"}</td>`;
+
+        assignmentTable.appendChild(row);
+      });
+    } catch (error) {
+      console.error("Assignments Error:", error);
+    }
+  }
+  async function loadResults() {
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/my-results/", {
+        credentials: "include",
+      });
+
+      const data = await response.json();
+
+      console.log("Results Data:", data);
+
+      const resultsSection = document.getElementById("results");
+
+      const resultsTable = document.getElementById("results-body");
+
+      resultsTable.innerHTML = "";
+
+      data.results.forEach(function (result) {
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+                <td>${result.semester}</td>
+                <td>${result.subject}</td>
+                <td>${result.marks}/${result.max_marks}</td>
+                <td>${result.grade}</td>`;
+
+        resultsTable.appendChild(row);
+      });
+    } catch (error) {
+      console.error("Results Error:", error);
+    }
+  }
+  async function loadNotices() {
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/notices/", {
+        credentials: "include",
+      });
+
+      const data = await response.json();
+
+      console.log("Notices Data:", data);
+
+      const noticesSection = document.getElementById("notices");
+
+      const noticeContainer = noticesSection.querySelector(".notice-list");
+
+      noticeContainer.innerHTML = "";
+
+      data.notices.forEach(function (notice) {
+        const noticeItem = document.createElement("div");
+
+        noticeItem.className = "notice-item";
+
+        noticeItem.innerHTML = `
+                <h4>${notice.title}</h4>
+                <p>${notice.message}</p>
+                <small>${notice.posted_date}</small>
+            `;
+
+        noticeContainer.appendChild(noticeItem);
+      });
+    } catch (error) {
+      console.error("Notices Error:", error);
+    }
+  }
   loadStudentData();
   loadAttendance();
+  loadAssignments();
+  loadResults();
+  loadNotices();
 
   console.log("Student Dashboard Loaded");
   /* Dashboard Cards*/
@@ -95,7 +208,7 @@ document.addEventListener("DOMContentLoaded", function () {
     resultsSection.style.display = "none";
     noticesSection.style.display = "none";
   }
-  /* Dashboard */
+  /* Dashboardr */
   function showDashboard() {
     hideAllSections();
 
@@ -164,3 +277,19 @@ document.addEventListener("DOMContentLoaded", function () {
   };
   showDashboard();
 });
+const logoutLink = document.querySelector('a[href="#logout"]');
+
+logoutLink.onclick = async function (event) {
+  event.preventDefault();
+
+  try {
+    await fetch("http://127.0.0.1:8000/api/logout/", {
+      method: "POST",
+      credentials: "include",
+    });
+
+    window.location.href = "login.html";
+  } catch (error) {
+    console.error("Logout Error:", error);
+  }
+};
