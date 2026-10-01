@@ -379,3 +379,357 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* ============================= */
+/* MY STUDENTS SECTION */
+/* ============================= */
+
+.faculty-students {
+  margin-top: 40px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Header */
+
+.faculty-students .section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.faculty-students .section-header h3 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.faculty-students .section-header p {
+  margin: 6px 0 0;
+  font-size: 14px;
+  color: #777;
+}
+
+/* Student Count */
+
+.faculty-students .student-count {
+  padding: 8px 15px;
+  border-radius: 20px;
+  background: #f8e9e4;
+  color: #c96f59;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Table Container */
+
+.student-table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* Table */
+
+.faculty-students table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Table Heading */
+
+.faculty-students th {
+  padding: 15px 12px;
+  text-align: left;
+  background: #fafafa;
+  color: #666;
+  font-size: 13px;
+  font-weight: 600;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/* Table Data */
+
+.faculty-students td {
+  padding: 16px 12px;
+  text-align: left;
+  font-size: 14px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+/* Row Hover */
+
+.faculty-students tbody tr:hover {
+  background: #fcf8f6;
+}
+
+/* Student Status */
+
+.student-status {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Approved */
+
+.status-approved {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+/* Pending */
+
+.status-pending {
+  background: #fff3e0;
+  color: #ef6c00;
+}
+
+/* View Button */
+
+.student-view-btn {
+  padding: 7px 14px;
+  border: none;
+  border-radius: 7px;
+  background: #f3e5df;
+  color: #b85f49;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.student-view-btn:hover {
+  background: #ead5cd;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+  .faculty-students {
+    padding: 20px;
+  }
+
+  .faculty-students .section-header {
+    align-items: flex-start;
+    gap: 15px;
+    flex-direction: column;
+  }
+
+  .faculty-students table {
+    min-width: 700px;
+  }
+}
+#students,
+#attendance,
+#assignments,
+#notices,
+#reports {
+  scroll-margin-top: 100px;
+}
+.page-hidden {
+  display: none !important;
+}
+.faculty-reports {
+  margin-top: 40px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.faculty-reports .section-header {
+  margin-bottom: 25px;
+}
+
+.faculty-reports .section-header h3 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.faculty-reports .section-header p {
+  margin-top: 6px;
+  color: #777;
+  font-size: 14px;
+}
+
+.report-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.report-card {
+  padding: 22px;
+  border: 1px solid #eeeeee;
+  border-radius: 12px;
+  background: #fafafa;
+}
+
+.report-card h4 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.report-card p {
+  margin-bottom: 20px;
+  color: #777;
+  font-size: 14px;
+}
+
+.report-btn {
+  padding: 9px 16px;
+  border: none;
+  border-radius: 7px;
+  background: #f3e5df;
+  color: #b85f49;
+  cursor: pointer;
+}
+
+.report-btn:hover {
+  background: #ead5cd;
+}
+
+@media (max-width: 768px) {
+  .report-cards {
+    grid-template-columns: 1fr;
+  }
+}
+/* ============================= */
+/* Faculty Assignments */
+/* ============================= */
+
+.assignment-filters {
+  display: flex;
+  gap: 20px;
+  margin: 25px 0;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filter-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
+}
+
+.filter-group select {
+  min-width: 230px;
+  padding: 11px 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 14px;
+  outline: none;
+  cursor: pointer;
+}
+
+.filter-group select:focus {
+  border-color: #b85f49;
+}
+
+.assignment-subjects {
+  margin-top: 30px;
+}
+
+.assignment-subjects h4,
+.assignment-list h4 {
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+#assignment-subject-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.subject-card {
+  padding: 12px 18px;
+  border: 1px solid #e5e5e5;
+  border-radius: 9px;
+  background: #fafafa;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.subject-card:hover {
+  background: #f3e5df;
+  border-color: #d8b5a8;
+}
+
+.empty-message {
+  color: #777;
+  font-size: 14px;
+}
+
+.assignment-list {
+  margin-top: 35px;
+}
+
+.assignment-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.assignment-list th {
+  text-align: left;
+  padding: 14px 18px;
+  color: #777;
+  font-size: 13px;
+  text-transform: uppercase;
+  border-bottom: 1px solid #eee;
+}
+
+.assignment-list td {
+  padding: 16px 18px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+/* Create Assignment Form */
+
+.create-assignment-form {
+  margin-top: 25px;
+  padding: 22px;
+  border: 1px solid #eeeeee;
+  border-radius: 12px;
+  background: #fafafa;
+}
+
+.create-assignment-form h4 {
+  margin: 0 0 15px;
+  font-size: 18px;
+}
+
+.create-assignment-form p {
+  margin-bottom: 18px;
+  color: #666;
+}
+
+.create-assignment-form input,
+.create-assignment-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px 13px;
+  margin-bottom: 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+}
+
+.create-assignment-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.create-assignment-form input:focus,
+.create-assignment-form textarea:focus {
+  border-color: #b85f49;
+}

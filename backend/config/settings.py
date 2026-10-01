@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'assignments',
     'results',
     'notices',
+    'subjects',
 ]
 
 MIDDLEWARE = [
