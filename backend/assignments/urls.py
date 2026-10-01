@@ -2,7 +2,8 @@ from django.urls import path
 from .views import (
     my_assignments,
     create_assignment,
-    faculty_assignments
+    faculty_assignments,
+    submit_assignment
 )
 
 urlpatterns = [
@@ -19,5 +20,10 @@ urlpatterns = [
     'api/faculty-assignments/',
     faculty_assignments,
     name='faculty-assignments'
+    ),
+    path(
+        'api/submit-assignment/',
+        submit_assignment,
+        name='submit-assignment'
     ),
 ]

@@ -22,6 +22,7 @@ def my_assignments(request):
 
     for assignment in assignments:
         data.append({
+            'id': assignment.id,
             'subject': assignment.subject,
             'title': assignment.title,
             'description': assignment.description,
