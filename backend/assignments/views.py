@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from .models import Assignment
+from .models import Assignment, AssignmentSubmission
 from subjects.models import Subject
 import json
 
@@ -123,4 +123,55 @@ def faculty_assignments(request):
 
     return JsonResponse({
         'assignments': data
+    })
+@csrf_exempt
+def submit_assignment(request):
+
+    if not request.user.is_authenticated:
+        return JsonResponse(
+            {'error': 'Login required'},
+            status=401
+        )
+
+    if request.user.role != 'student':
+        return JsonResponse(
+            {'error': 'Only students can submit assignments'},
+            status=403
+        )
+
+    if request.method != 'POST':
+        return JsonResponse(
+            {'error': 'POST method required'},
+            status=405
+        )
+
+    assignment_id = request.POST.get('assignment_id')
+    soft_copy = request.FILES.get('soft_copy')
+
+    if not assignment_id or not soft_copy:
+        return JsonResponse(
+            {'error': 'Assignment and soft copy are required'},
+            status=400
+        )
+
+    try:
+        assignment = Assignment.objects.get(
+            id=assignment_id
+        )
+    except Assignment.DoesNotExist:
+        return JsonResponse(
+            {'error': 'Assignment not found'},
+            status=404
+        )
+
+    submission = AssignmentSubmission.objects.create(
+        assignment=assignment,
+        student=request.user,
+        soft_copy=soft_copy
+    )
+
+    return JsonResponse({
+        'message': 'Assignment submitted successfully',
+        'submission_id': submission.id,
+        'status': submission.status
     })

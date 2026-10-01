@@ -24,3 +24,25 @@ class AssignmentAdmin(admin.ModelAdmin):
         'student__student_id',
         'title',
     )
+
+from .models import AssignmentSubmission
+
+@admin.register(AssignmentSubmission)
+class AssignmentSubmissionAdmin(admin.ModelAdmin):
+
+    list_display = (
+        'student',
+        'assignment',
+        'status',
+        'submitted_at',
+    )
+
+    list_filter = (
+        'status',
+        'submitted_at',
+    )
+
+    search_fields = (
+        'student__username',
+        'assignment__title',
+    )
