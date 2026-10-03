@@ -3,7 +3,9 @@ from .views import (
     my_assignments,
     create_assignment,
     faculty_assignments,
-    submit_assignment
+    submit_assignment,
+    faculty_submissions,
+    review_submission
 )
 
 urlpatterns = [
@@ -25,5 +27,15 @@ urlpatterns = [
         'api/submit-assignment/',
         submit_assignment,
         name='submit-assignment'
+    ),
+    path(
+        'api/faculty-submissions/',
+        faculty_submissions,
+        name='faculty-submissions'
+    ),
+    path(
+        'api/review-submission/',
+        review_submission,
+        name='review-submission'
     ),
 ]

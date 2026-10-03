@@ -1,266 +1,324 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Faculty Dashboard</title>
-    <link rel="stylesheet" href="css/faculty-dashboard.css" />
-  </head>
-  <body>
-    <aside class="sidebar">
-      <h2 class="logo">Rabita</h2>
-      <nav class="sidebar-nav">
-        <ul>
-          <li><a href="#dashboard">Dashboard</a></li>
-          <li><a href="#students">Students</a></li>
-          <li><a href="#attendance">Attendance</a></li>
-          <li><a href="#assignments">Assignments</a></li>
-          <li><a href="#notices">Notices</a></li>
-          <li><a href="#reports">Reports</a></li>
-          <li><a href="#logout">Logout</a></li>
-        </ul>
-      </nav>
-    </aside>
-    <main class="dashboard-main">
-      <header class="top-navbar">
-        <span class="welcome-text">Welcome, Faculty</span>
-        <div class="navbar-actions">
-          <button type="button" aria-label="Notifications">🔔</button>
-          <button type="button" aria-label="Profile">👤</button>
-        </div>
-      </header>
-      <div class="main-content">
-        <!-- Dashboard Section -->
-        <div id="dashboard-section">
-          <!-- Welcome Section -->
-          <section class="welcome-section">
-            <h1>Good Morning, Faculty</h1>
-            <p>Here's what's happening with your classes today.</p>
-          </section>
 
-          <section class="summary-cards">
-            <div class="summary-card">
-              <h3>My Students</h3>
-              <p class="card-number">0</p>
-            </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Faculty Dashboard</title>
+  <link rel="stylesheet" href="css/faculty-dashboard.css" />
+</head>
 
-            <div class="summary-card">
-              <h3>Today's Attendance</h3>
-              <p class="card-number">0</p>
-            </div>
+<body>
+  <aside class="sidebar">
+    <h2 class="logo">Rabita</h2>
+    <nav class="sidebar-nav">
+      <ul>
+        <li><a href="#dashboard">Dashboard</a></li>
+        <li><a href="#students">Students</a></li>
+        <li><a href="#attendance">Attendance</a></li>
+        <li><a href="#assignments">Assignments</a></li>
+        <li><a href="#submissions"data-section="submissions">Submissions</a></li>
+        <li><a href="#notices">Notices</a></li>
+        <li><a href="#reports">Reports</a></li>
+        <li><a href="#logout">Logout</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <main class="dashboard-main">
+    <header class="top-navbar">
+      <span class="welcome-text">Welcome, Faculty</span>
+      <div class="navbar-actions">
+        <button type="button" aria-label="Notifications">🔔</button>
+        <button type="button" aria-label="Profile">👤</button>
+      </div>
+    </header>
+    <div class="main-content">
+      <!-- Dashboard Section -->
+      <div id="dashboard-section">
+        <!-- Welcome Section -->
+        <section class="welcome-section">
+          <h1>Good Morning, Faculty</h1>
+          <p>Here's what's happening with your classes today.</p>
+        </section>
 
-            <div class="summary-card">
-              <h3>Pending Tasks</h3>
-              <p class="card-number">0</p>
-            </div>
-
-            <div class="summary-card">
-              <h3>Notices</h3>
-              <p class="card-number">0</p>
-            </div>
-          </section>
-
-          <section class="recent-student-activity">
-            <h3>Recent Student Activity</h3>
-
-            <div class="activity-list">
-              <div class="activity-item">
-                <span>Assignment submitted by student</span>
-                <span>Today</span>
-              </div>
-
-              <div class="activity-item">
-                <span>Doubt raised in discussion forum</span>
-                <span>Today</span>
-              </div>
-
-              <div class="activity-item">
-                <span>Leave application received</span>
-                <span>Today</span>
-              </div>
-            </div>
-          </section>
-        </div>
-        <!-- Dashboard Section End -->
-        <section class="faculty-students" id="students">
-          <div class="section-header">
-            <div>
-              <h3>My Students</h3>
-              <p>Students assigned to your branch</p>
-            </div>
-
-            <span class="student-count" id="student-count"> 0 Students </span>
+        <section class="summary-cards">
+          <div class="summary-card">
+            <h3>My Students</h3>
+            <p class="card-number">0</p>
           </div>
 
-          <div class="student-table-container">
-            <table>
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Student ID</th>
-                  <th>Branch</th>
-                  <th>Semester</th>
-                  <th>Status</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
+          <div class="summary-card">
+            <h3>Today's Attendance</h3>
+            <p class="card-number">0</p>
+          </div>
 
-              <tbody id="faculty-students-body"></tbody>
-            </table>
+          <div class="summary-card">
+            <h3>Pending Tasks</h3>
+            <p class="card-number">0</p>
+          </div>
+
+          <div class="summary-card">
+            <h3>Notices</h3>
+            <p class="card-number">0</p>
           </div>
         </section>
-        <section class="attendance-overview" id="attendance">
-          <h3>My Students' Attendance</h3>
 
-          <div class="attendance-table-container">
-            <table>
-              <thead>
-                <tr>
-                  <th>Student</th>
-                  <th>Subject</th>
-                  <th>Total Present</th>
-                  <th>Total Absent</th>
-                  <th>Attendance</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
+        <section class="recent-student-activity">
+          <h3>Recent Student Activity</h3>
 
-              <tbody id="my-students-attendance-body"></tbody>
-            </table>
-          </div>
-        </section>
-        <section class="pending-assignments" id="assignments">
-          <div class="section-header">
-            <div>
-              <h3>Assignments</h3>
-              <p>Manage assignments semester-wise and subject-wise</p>
-            </div>
-          </div>
-
-          <div class="assignment-filters">
-            <div class="filter-group">
-              <label for="assignment-branch">Branch</label>
-
-              <select id="assignment-branch">
-                <option value="">Select Branch</option>
-                <option value="CSE">Computer Science Engineering</option>
-                <option value="MIN">Mining Engineering</option>
-                <option value="ME">Mechanical Engineering</option>
-                <option value="EE">Electrical Engineering</option>
-                <option value="CE">Civil Engineering</option>
-              </select>
+          <div class="activity-list">
+            <div class="activity-item">
+              <span>Assignment submitted by student</span>
+              <span>Today</span>
             </div>
 
-            <div class="filter-group">
-              <label for="assignment-semester">Semester</label>
-
-              <select id="assignment-semester">
-                <option value="">Select Semester</option>
-                <option value="1">1st Semester</option>
-                <option value="2">2nd Semester</option>
-                <option value="3">3rd Semester</option>
-                <option value="4">4th Semester</option>
-                <option value="5">5th Semester</option>
-                <option value="6">6th Semester</option>
-                <option value="7">7th Semester</option>
-                <option value="8">8th Semester</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="assignment-subjects">
-            <h4>Subjects</h4>
-
-            <div id="assignment-subject-list">
-              <p class="empty-message">
-                Select branch and semester to view subjects.
-              </p>
-            </div>
-          </div>
-
-          <div class="assignment-list">
-            <div
-              id="create-assignment-form"
-              class="create-assignment-form page-hidden"
-            >
-              <h4>Create Assignment</h4>
-
-              <p>
-                Subject:
-                <strong id="selected-assignment-subject">-</strong>
-              </p>
-
-              <input
-                type="text"
-                id="assignment-title"
-                placeholder="Assignment Title"
-              />
-
-              <textarea
-                id="assignment-description"
-                placeholder="Assignment Description"
-              ></textarea>
-
-              <input type="date" id="assignment-due-date" />
-
-              <button id="create-assignment-btn" class="report-btn">
-                Create Assignment
-              </button>
-            </div>
-            <h4>Assignments</h4>
-
-            <table>
-              <thead>
-                <tr>
-                  <th>Assignment Title</th>
-                  <th>Subject</th>
-                  <th>Due Date</th>
-                  <th>Submissions</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-
-              <tbody id="faculty-assignment-body">
-                <tr>
-                  <td colspan="5">No assignments selected.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-        <section class="recent-notices" id="notices">
-          <h3>Recent Notices</h3>
-        </section>
-        <section class="faculty-reports" id="reports">
-          <div class="section-header">
-            <div>
-              <h3>Reports</h3>
-              <p>View academic and attendance reports</p>
-            </div>
-          </div>
-
-          <div class="report-cards">
-            <div class="report-card">
-              <h4>Attendance Report</h4>
-              <p>View student attendance performance.</p>
-              <button class="report-btn">View Report</button>
+            <div class="activity-item">
+              <span>Doubt raised in discussion forum</span>
+              <span>Today</span>
             </div>
 
-            <div class="report-card">
-              <h4>Assignment Report</h4>
-              <p>View assignment submission details.</p>
-              <button class="report-btn">View Report</button>
-            </div>
-
-            <div class="report-card">
-              <h4>Student Performance</h4>
-              <p>View student academic performance.</p>
-              <button class="report-btn">View Report</button>
+            <div class="activity-item">
+              <span>Leave application received</span>
+              <span>Today</span>
             </div>
           </div>
         </section>
       </div>
-    </main>
-    <script src="js/faculty.js"></script>
-  </body>
+      <!-- Dashboard Section End -->
+      <section class="faculty-students" id="students">
+        <div class="section-header">
+          <div>
+            <h3>My Students</h3>
+            <p>Students assigned to your branch</p>
+          </div>
+
+          <span class="student-count" id="student-count"> 0 Students </span>
+        </div>
+
+        <div class="student-table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Student ID</th>
+                <th>Branch</th>
+                <th>Semester</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody id="faculty-students-body"></tbody>
+          </table>
+        </div>
+      </section>
+      <section class="attendance-overview" id="attendance">
+        <h3>My Students' Attendance</h3>
+
+        <div class="attendance-table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Student</th>
+                <th>Subject</th>
+                <th>Total Present</th>
+                <th>Total Absent</th>
+                <th>Attendance</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody id="my-students-attendance-body"></tbody>
+          </table>
+        </div>
+      </section>
+      <section class="pending-assignments" id="assignments">
+        <div class="section-header">
+          <div>
+            <h3>Assignments</h3>
+            <p>Manage assignments semester-wise and subject-wise</p>
+          </div>
+        </div>
+        <div class="assignment-filters">
+          <div class="filter-group">
+            <label for="assignment-branch">Branch</label>
+
+            <select id="assignment-branch">
+              <option value="">Select Branch</option>
+              <option value="CSE">Computer Science Engineering</option>
+              <option value="MIN">Mining Engineering</option>
+              <option value="ME">Mechanical Engineering</option>
+              <option value="EE">Electrical Engineering</option>
+              <option value="CE">Civil Engineering</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="assignment-semester">Semester</label>
+
+            <select id="assignment-semester">
+              <option value="">Select Semester</option>
+              <option value="1">1st Semester</option>
+              <option value="2">2nd Semester</option>
+              <option value="3">3rd Semester</option>
+              <option value="4">4th Semester</option>
+              <option value="5">5th Semester</option>
+              <option value="6">6th Semester</option>
+              <option value="7">7th Semester</option>
+              <option value="8">8th Semester</option>
+            </select>
+          </div>
+        </div>
+        <div class="assignment-subjects">
+          <h4>Subjects</h4>
+
+          <div id="assignment-subject-list">
+            <p class="empty-message">
+              Select branch and semester to view subjects.
+            </p>
+          </div>
+        </div>
+        <div class="assignment-list">
+          <div id="create-assignment-form" class="create-assignment-form page-hidden">
+            <h4>Create Assignment</h4>
+
+            <p>
+              Subject:
+              <strong id="selected-assignment-subject">-</strong>
+            </p>
+
+            <input type="text" id="assignment-title" placeholder="Assignment Title" />
+
+            <textarea id="assignment-description" placeholder="Assignment Description">
+              </textarea>
+
+            <input type="date" id="assignment-due-date" />
+
+            <button id="create-assignment-btn" class="report-btn">
+              Create Assignment
+            </button>
+          </div>
+          <h4>Assignments</h4>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Assignment Title</th>
+                <th>Subject</th>
+                <th>Due Date</th>
+                <th>Submissions</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody id="faculty-assignment-body">
+              <tr>
+                <td colspan="5">No assignments selected.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section class="faculty-submissions page-hidden" id="submissions">
+
+        <div class="section-header">
+          <div>
+            <h3>Assignment Submissions</h3>
+            <p>Review student assignment submissions</p>
+          </div>
+        </div>
+
+        <div class="submission-list">
+
+          <table>
+            <thead>
+              <tr>
+                <th>Student</th>
+                <th>Assignment</th>
+                <th>Subject</th>
+                <th>Submitted Date</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody id="faculty-submission-body">
+
+              <tr>
+                <td colspan="6">
+                  No submissions yet.
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+
+        </div>
+
+        <div id="review-submission-box" class="review-submission-box page-hidden">
+
+          <h4>Review Submission</h4>
+
+          <p>
+            Student:
+            <strong id="review-student">-</strong>
+          </p>
+
+          <p>
+            Assignment:
+            <strong id="review-assignment">-</strong>
+          </p>
+
+          <textarea id="review-remarks" placeholder="Enter professor remarks..."></textarea>
+
+          <div class="review-actions">
+
+            <button type="button" id="approve-submission-btn" class="approve-btn">
+              Approve
+            </button>
+
+            <button type="button" id="reject-submission-btn" class="reject-btn">
+              Reject
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
+      <section class="recent-notices" id="notices">
+        <h3>Recent Notices</h3>
+      </section>
+      <section class="faculty-reports" id="reports">
+        <div class="section-header">
+          <div>
+            <h3>Reports</h3>
+            <p>View academic and attendance reports</p>
+          </div>
+        </div>
+
+        <div class="report-cards">
+          <div class="report-card">
+            <h4>Attendance Report</h4>
+            <p>View student attendance performance.</p>
+            <button class="report-btn">View Report</button>
+          </div>
+
+          <div class="report-card">
+            <h4>Assignment Report</h4>
+            <p>View assignment submission details.</p>
+            <button class="report-btn">View Report</button>
+          </div>
+
+          <div class="report-card">
+            <h4>Student Performance</h4>
+            <p>View student academic performance.</p>
+            <button class="report-btn">View Report</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <script src="js/faculty.js"></script>
+</body>
+
 </html>

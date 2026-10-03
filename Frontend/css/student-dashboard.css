@@ -509,3 +509,28 @@ body {
     min-width: 600px;
   }
 }
+/* Assignment Status */
+
+.status-badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.status-badge.pending {
+    background: #fffdf7;
+    color: #f8c52c;
+}
+
+.status-badge.approved {
+    background: #ffffff;
+    color: #00a326;
+}
+
+.status-badge.rejected {
+    background: #f6f5f5;
+    color: #6c020c;
+}

@@ -21,13 +21,24 @@ def my_assignments(request):
     data = []
 
     for assignment in assignments:
+
+        submission = AssignmentSubmission.objects.filter(
+            assignment=assignment,
+            student=request.user
+        ).first()
+
+        if submission:
+            status = submission.status
+        else:
+            status = 'pending'
+
         data.append({
             'id': assignment.id,
             'subject': assignment.subject,
             'title': assignment.title,
             'description': assignment.description,
             'due_date': assignment.due_date,
-            'submitted': assignment.submitted,
+            'status': status,
         })
 
     return JsonResponse({
@@ -175,4 +186,102 @@ def submit_assignment(request):
         'message': 'Assignment submitted successfully',
         'submission_id': submission.id,
         'status': submission.status
+    })
+def faculty_submissions(request):
+
+    if not request.user.is_authenticated:
+        return JsonResponse(
+            {'error': 'Login required'},
+            status=401
+        )
+
+    if request.user.role != 'faculty':
+        return JsonResponse(
+            {'error': 'Access denied'},
+            status=403
+        )
+
+    submissions = AssignmentSubmission.objects.filter(
+        assignment__subject_ref__faculty=request.user
+    ).select_related(
+        'student',
+        'assignment'
+    ).order_by(
+        '-submitted_at'
+    )
+
+    data = []
+
+    for submission in submissions:
+
+        data.append({
+            'id': submission.id,
+            'student': submission.student.username,
+            'assignment': submission.assignment.title,
+            'subject': submission.assignment.subject,
+            'submitted_at': submission.submitted_at,
+            'status': submission.status,
+            'professor_remarks': submission.professor_remarks,
+        })
+
+    return JsonResponse({
+        'submissions': data
+    })
+@csrf_exempt
+def review_submission(request):
+
+    if not request.user.is_authenticated:
+        return JsonResponse(
+            {'error': 'Login required'},
+            status=401
+        )
+
+    if request.user.role != 'faculty':
+        return JsonResponse(
+            {'error': 'Access denied'},
+            status=403
+        )
+
+    if request.method != 'POST':
+        return JsonResponse(
+            {'error': 'POST method required'},
+            status=405
+        )
+
+    data = json.loads(request.body)
+
+    submission_id = data.get('submission_id')
+    status = data.get('status')
+    remarks = data.get('remarks', '')
+
+    if not submission_id or status not in ['approved', 'rejected']:
+        return JsonResponse(
+            {'error': 'Invalid submission or status'},
+            status=400
+        )
+
+    try:
+        submission = AssignmentSubmission.objects.get(
+            id=submission_id
+        )
+    except AssignmentSubmission.DoesNotExist:
+        return JsonResponse(
+            {'error': 'Submission not found'},
+            status=404
+        )
+
+    if submission.assignment.subject_ref.faculty != request.user:
+        return JsonResponse(
+            {'error': 'You are not allowed to review this submission'},
+            status=403
+        )
+
+    submission.status = status
+    submission.professor_remarks = remarks
+    submission.save()
+
+    return JsonResponse({
+        'message': 'Submission reviewed successfully',
+        'status': submission.status,
+        'remarks': submission.professor_remarks
     })

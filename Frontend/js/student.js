@@ -115,8 +115,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         <td>${assignment.due_date}</td>
 
-        <td>
-          ${assignment.submitted ? "Submitted" : "Pending"}
+       <td>
+          <span class="status-badge ${assignment.status}">
+            ${assignment.status}
+          </span>
         </td>
 
         <td>
@@ -182,6 +184,7 @@ document.addEventListener("DOMContentLoaded", function () {
       alert("Unable to submit assignment.");
     }
   }
+  window.submitAssignment = submitAssignment;
   async function loadResults() {
     try {
       const response = await fetch("http://127.0.0.1:8000/api/my-results/", {

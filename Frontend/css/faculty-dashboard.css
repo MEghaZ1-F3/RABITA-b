@@ -733,3 +733,124 @@ body {
 .create-assignment-form textarea:focus {
   border-color: #b85f49;
 }
+/* ============================= */
+/* Assignment Submissions */
+/* ============================= */
+
+.faculty-submissions {
+    margin-top: 20px;
+}
+
+.submission-list {
+    margin-top: 25px;
+    overflow-x: auto;
+}
+
+.submission-list table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+}
+
+.submission-list th {
+    text-align: left;
+    padding: 14px 16px;
+    color: #777;
+    font-size: 13px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.submission-list td {
+    padding: 16px;
+    font-size: 14px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.submission-list tr:hover {
+    background: #fafafa;
+}
+
+
+/* ============================= */
+/* Review Submission Box */
+/* ============================= */
+
+.review-submission-box {
+    margin-top: 30px;
+    padding: 24px;
+    background: #ffffff;
+    border: 1px solid #eeeeee;
+    border-radius: 12px;
+}
+
+.review-submission-box h4 {
+    margin: 0 0 20px;
+    font-size: 19px;
+}
+
+.review-submission-box p {
+    margin: 10px 0;
+    color: #555;
+}
+
+.review-submission-box strong {
+    color: #222;
+}
+
+#review-remarks {
+    width: 100%;
+    min-height: 100px;
+    box-sizing: border-box;
+    margin-top: 15px;
+    padding: 12px;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    resize: vertical;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+}
+
+#review-remarks:focus {
+    border-color: #b85f49;
+}
+
+
+/* ============================= */
+/* Approve / Reject Buttons */
+/* ============================= */
+
+.review-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.approve-btn,
+.reject-btn {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.approve-btn {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.approve-btn:hover {
+    background: #d7ecd9;
+}
+
+.reject-btn {
+    background: #fdeaea;
+    color: #c62828;
+}
+
+.reject-btn:hover {
+    background: #f8dada;
+}
