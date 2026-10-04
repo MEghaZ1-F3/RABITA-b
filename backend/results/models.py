@@ -42,3 +42,38 @@ class InternalMarks(models.Model):
 
     def __str__(self):
         return f"{self.student.username} - {self.subject.subject_name}"
+class SemesterResult(models.Model):
+
+    STATUS_CHOICES = (
+        ('pending', 'Pending'),
+        ('approved', 'Approved'),
+        ('rejected', 'Rejected'),
+    )
+
+    student = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE
+    )
+
+    semester = models.PositiveIntegerField()
+
+    result_file = models.FileField(
+        upload_to='results/'
+    )
+
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default='pending'
+    )
+
+    faculty_remarks = models.TextField(
+        blank=True
+    )
+
+    uploaded_at = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    def __str__(self):
+        return f"{self.student.username} - Semester {self.semester}"
