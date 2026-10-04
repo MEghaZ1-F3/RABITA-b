@@ -41,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     if (sectionName === "results") {
       document.getElementById("results").classList.remove("page-hidden");
+      loadSemesterResults();
     }
 
     if (sectionName === "notices") {
@@ -767,3 +768,122 @@ document.addEventListener("DOMContentLoaded", function () {
   loadFacultyAssignments();
   loadFacultySubmissions();
 });
+async function loadSemesterResults() {
+  try {
+    const response = await fetch(
+      "http://127.0.0.1:8000/api/faculty-semesters-results/",
+      {
+        credentials: "include"
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      console.error(data.error);
+      return;
+    }
+
+    const tbody = document.getElementById("semester-result-body");
+
+    tbody.innerHTML = "";
+
+    data.results.forEach(function (result) {
+      const row = document.createElement("tr");
+
+      let actionHTML = `
+        <a href="${result.result_file}" target="_blank">
+            View Result
+        </a>
+    `;
+
+      if (result.status === "pending") {
+        actionHTML += `
+            <br><br>
+
+            <button type="button"
+                onclick="reviewSemesterResult(${result.id}, 'approved')">
+                Approve
+            </button>
+
+            <button type="button"
+                onclick="reviewSemesterResult(${result.id}, 'rejected')">
+                Reject
+            </button>
+        `;
+      }
+
+      if (result.status === "rejected" && result.faculty_remarks) {
+        actionHTML += `
+            <br>
+            <small>Reason: ${result.faculty_remarks}</small>
+        `;
+      }
+
+      row.innerHTML = `
+        <td>${result.student_name}</td>
+        <td>${result.semester}</td>
+        <td>
+            <span class="result-status ${result.status}">
+                ${result.status}
+            </span>
+        </td>
+        <td>${actionHTML}</td>
+    `;
+
+      tbody.appendChild(row);
+    });
+
+  } catch (error) {
+    console.error("Semester Results Error:", error);
+  }
+}
+async function reviewSemesterResult(resultId, status) {
+  let remarks = "";
+
+  if (status === "rejected") {
+    remarks = prompt("Enter rejection reason:");
+
+    if (!remarks || !remarks.trim()) {
+      alert("Rejection reason is required.");
+      return;
+    }
+  }
+
+  try {
+    const response = await fetch(
+      "http://127.0.0.1:8000/api/review-semester-result/",
+      {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          result_id: resultId,
+          status: status,
+          remarks: remarks
+        })
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      alert(data.error || "Unable to review result.");
+      return;
+    }
+
+    alert(
+      status === "approved"
+        ? "Result approved successfully!"
+        : "Result rejected successfully!"
+    );
+
+    loadSemesterResults();
+
+  } catch (error) {
+    console.error("Review Result Error:", error);
+    alert("Unable to review result.");
+  }
+}

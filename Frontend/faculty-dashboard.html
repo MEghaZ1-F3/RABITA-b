@@ -345,45 +345,56 @@
         <div class="result-box">
           <h4>Semester Result</h4>
 
-          <p>University semester result/marksheet management will be added here.</p>
+          <p>Review student semester results.</p>
 
-          <button type="button">
-            Upload Semester Result
-          </button>
+          <table>
+            <thead>
+              <tr>
+                <th>Student</th>
+                <th>Semester</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody id="semester-result-body">
+            </tbody>
+          </table>
+        </div>
+    </div>
+
+    </section>
+    <section class="recent-notices" id="notices">
+      <h3>Recent Notices</h3>
+    </section>
+    <section class="faculty-reports" id="reports">
+      <div class="section-header">
+        <div>
+          <h3>Reports</h3>
+          <p>View academic and attendance reports</p>
+        </div>
+      </div>
+
+      <div class="report-cards">
+        <div class="report-card">
+          <h4>Attendance Report</h4>
+          <p>View student attendance performance.</p>
+          <button class="report-btn">View Report</button>
         </div>
 
-      </section>
-      <section class="recent-notices" id="notices">
-        <h3>Recent Notices</h3>
-      </section>
-      <section class="faculty-reports" id="reports">
-        <div class="section-header">
-          <div>
-            <h3>Reports</h3>
-            <p>View academic and attendance reports</p>
-          </div>
+        <div class="report-card">
+          <h4>Assignment Report</h4>
+          <p>View assignment submission details.</p>
+          <button class="report-btn">View Report</button>
         </div>
 
-        <div class="report-cards">
-          <div class="report-card">
-            <h4>Attendance Report</h4>
-            <p>View student attendance performance.</p>
-            <button class="report-btn">View Report</button>
-          </div>
-
-          <div class="report-card">
-            <h4>Assignment Report</h4>
-            <p>View assignment submission details.</p>
-            <button class="report-btn">View Report</button>
-          </div>
-
-          <div class="report-card">
-            <h4>Student Performance</h4>
-            <p>View student academic performance.</p>
-            <button class="report-btn">View Report</button>
-          </div>
+        <div class="report-card">
+          <h4>Student Performance</h4>
+          <p>View student academic performance.</p>
+          <button class="report-btn">View Report</button>
         </div>
-      </section>
+      </div>
+    </section>
     </div>
   </main>
   <script src="js/faculty.js"></script>

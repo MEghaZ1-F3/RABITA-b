@@ -600,6 +600,7 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
 /* Faculty Assignments */
 
 .assignment-filters {
@@ -849,6 +850,7 @@ body {
 .reject-btn:hover {
   background: #f8dada;
 }
+
 /* Hard Copy Checkbox */
 .hard-copy-check {
   display: block;
@@ -859,4 +861,136 @@ body {
 
 .hard-copy-check input {
   margin-right: 8px;
+}
+/* Result Status Badge */
+.result-status {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.result-status.approved {
+  background: #d4edda;
+  color: #155724;
+}
+
+.result-status.pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.result-status.rejected {
+  background: #f8d7da;
+  color: #721c24;
+}
+/* Results Section */
+.faculty-results {
+    padding: 20px;
+}
+
+.faculty-results .section-header {
+    margin-bottom: 20px;
+}
+
+.faculty-results .section-header h3 {
+    margin-bottom: 5px;
+}
+
+.faculty-results .section-header p {
+    color: #777;
+}
+
+/* Result Boxes */
+.result-box {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.result-box h4 {
+    margin-bottom: 15px;
+}
+
+/* Labels */
+.result-box label {
+    display: block;
+    margin: 12px 0 6px;
+    font-weight: 600;
+}
+
+/* Select and Input */
+.result-box select,
+.result-box input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 8px;
+}
+
+/* Buttons */
+.result-box button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 8px;
+}
+
+/* Results Table */
+.result-box table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.result-box th,
+.result-box td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.result-box th {
+    font-weight: 600;
+}
+
+/* Result Status */
+.result-status {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.result-status.approved {
+    background: #d4edda;
+    color: #155724;
+}
+
+.result-status.pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.result-status.rejected {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+/* Result Link */
+.result-box a {
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* Rejection Reason */
+.result-box small {
+    display: inline-block;
+    margin-top: 8px;
 }

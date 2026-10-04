@@ -195,3 +195,131 @@ def upload_semester_result(request):
         'result_id': result.id,
         'status': result.status
     })
+def faculty_semester_results(request):
+    if not request.user.is_authenticated:
+        return JsonResponse(
+            {'error': 'Login required'},
+            status=401
+        )
+
+    if request.user.role != 'faculty':
+        return JsonResponse(
+            {'error': 'Only faculty can view results'},
+            status=403
+        )
+
+    results = SemesterResult.objects.filter(
+        student__role='student',
+        student__branch=request.user.branch
+    ).select_related('student').order_by('-uploaded_at')
+
+    data = []
+
+    for result in results:
+        data.append({
+            'id': result.id,
+            'student_name': result.student.username,
+            'student_id': (
+                result.student.student_id
+                or result.student.temporary_id
+            ),
+            'semester': result.semester,
+            'status': result.status,
+            'result_file': request.build_absolute_uri(
+                result.result_file.url
+            ),
+            'faculty_remarks': result.faculty_remarks,
+            'uploaded_at': result.uploaded_at,
+        })
+
+    return JsonResponse({'results': data})
+@csrf_exempt
+def review_semester_result(request):
+    if not request.user.is_authenticated:
+        return JsonResponse(
+            {'error': 'Login required'},
+            status=401
+        )
+
+    if request.user.role != 'faculty':
+        return JsonResponse(
+            {'error': 'Only faculty can review results'},
+            status=403
+        )
+
+    if request.method != 'POST':
+        return JsonResponse(
+            {'error': 'POST method required'},
+            status=405
+        )
+
+    data = json.loads(request.body)
+
+    result_id = data.get('result_id')
+    status = data.get('status')
+    remarks = data.get('remarks', '')
+
+    if not result_id or status not in ['approved', 'rejected']:
+        return JsonResponse(
+            {'error': 'Invalid result or status'},
+            status=400
+        )
+
+    if status == 'rejected' and not remarks.strip():
+        return JsonResponse(
+            {'error': 'Remarks are required when rejecting a result'},
+            status=400
+        )
+
+    try:
+        result = SemesterResult.objects.get(
+            id=result_id,
+            student__branch=request.user.branch
+        )
+    except SemesterResult.DoesNotExist:
+        return JsonResponse(
+            {'error': 'Result not found or access denied'},
+            status=404
+        )
+
+    result.status = status
+    result.faculty_remarks = remarks
+    result.save()
+
+    return JsonResponse({
+        'message': 'Result reviewed successfully',
+        'status': result.status,
+        'remarks': result.faculty_remarks
+    })
+def my_semester_results(request):
+    if not request.user.is_authenticated:
+        return JsonResponse(
+            {'error': 'Login required'},
+            status=401
+        )
+
+    if request.user.role != 'student':
+        return JsonResponse(
+            {'error': 'Only students can view results'},
+            status=403
+        )
+
+    results = SemesterResult.objects.filter(
+        student=request.user
+    ).order_by('-semester')
+
+    data = []
+
+    for result in results:
+        data.append({
+            'id': result.id,
+            'semester': result.semester,
+            'status': result.status,
+            'result_file': request.build_absolute_uri(
+                result.result_file.url
+            ),
+            'faculty_remarks': result.faculty_remarks,
+            'uploaded_at': result.uploaded_at,
+        })
+
+    return JsonResponse({'results': data})

@@ -138,23 +138,9 @@
         </table>
       </section>
       <section class="student-results" id="results">
-        <h3>My Results</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Semester</th>
-              <th>Subject</th>
-              <th>Marks</th>
-              <th>Grade</th>
-            </tr>
-          </thead>
-          <tbody id="results-body"></tbody>
-        </table>
         <div class="semester-result-box">
-
           <h3>Semester Result</h3>
           <p>Upload your university semester marksheet.</p>
-
           <label>Semester</label>
           <select id="result-upload-semester">
             <option value="">Select Semester</option>
@@ -167,19 +153,32 @@
             <option value="7">7th Semester</option>
             <option value="8">8th Semester</option>
           </select>
-
           <label>Result / Marksheet</label>
           <input type="file" id="semester-result-file" accept=".pdf">
-
           <button type="button" id="upload-semester-result">
             Upload Result
           </button>
+        </div>
+        <div class="semester-result-list">
+          <h3>My Semester Results</h3>
 
+          <table>
+            <thead>
+              <tr>
+                <th>Semester</th>
+                <th>Status</th>
+                <th>Remarks</th>
+                <th>Result</th>
+              </tr>
+            </thead>
+
+            <tbody id="semester-result-body">
+            </tbody>
+          </table>
         </div>
       </section>
       <section class="recent-notices" id="notices">
         <h3>Recent Notices</h3>
-
         <div class="notice-list">
           <div class="notice-item">
             <h4>Notice Title</h4>

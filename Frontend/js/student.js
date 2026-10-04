@@ -189,37 +189,49 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
   window.submitAssignment = submitAssignment;
-  async function loadResults() {
+
+  async function uploadSemesterResult() {
+    const semester = document.getElementById("result-upload-semester").value;
+    const fileInput = document.getElementById("semester-result-file");
+
+    if (!semester || !fileInput.files.length) {
+      alert("Please select semester and result file.");
+      return;
+    }
+
+    const formData = new FormData();
+
+    formData.append("semester", semester);
+    formData.append("result_file", fileInput.files[0]);
+
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/my-results/", {
-        credentials: "include",
-      });
+      const response = await fetch(
+        "http://127.0.0.1:8000/api/upload-semester-result/",
+        {
+          method: "POST",
+          credentials: "include",
+          body: formData,
+        }
+      );
 
       const data = await response.json();
 
-      console.log("Results Data:", data);
+      if (!response.ok) {
+        alert(data.error || "Upload failed.");
+        return;
+      }
 
-      const resultsSection = document.getElementById("results");
+      alert("Semester result uploaded successfully!");
 
-      const resultsTable = document.getElementById("results-body");
-
-      resultsTable.innerHTML = "";
-
-      data.results.forEach(function (result) {
-        const row = document.createElement("tr");
-
-        row.innerHTML = `
-                <td>${result.semester}</td>
-                <td>${result.subject}</td>
-                <td>${result.marks}/${result.max_marks}</td>
-                <td>${result.grade}</td>`;
-
-        resultsTable.appendChild(row);
-      });
+      fileInput.value = "";
     } catch (error) {
-      console.error("Results Error:", error);
+      console.error("Upload Result Error:", error);
+      alert("Unable to upload result.");
     }
   }
+  document
+    .getElementById("upload-semester-result")
+    .addEventListener("click", uploadSemesterResult);
   async function loadNotices() {
     try {
       const response = await fetch("http://127.0.0.1:8000/api/notices/", {
@@ -253,16 +265,59 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error("Notices Error:", error);
     }
   }
+  async function loadSemesterResults() {
+    try {
+      const response = await fetch(
+        "http://127.0.0.1:8000/api/my-semester-results/",
+        {
+          credentials: "include"
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        console.error(data.error);
+        return;
+      }
+
+      const tbody = document.getElementById("semester-result-body");
+
+      tbody.innerHTML = "";
+
+      data.results.forEach(function (result) {
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+        <td>${result.semester}</td>
+        <td>
+            <span class="result-status ${result.status}">
+                ${result.status}
+            </span>
+        </td>
+        <td>${result.faculty_remarks || "-"}</td>
+        <td>
+            <a href="${result.result_file}" target="_blank">
+                View Result
+            </a>
+        </td>
+    `;
+
+        tbody.appendChild(row);
+      });
+
+    } catch (error) {
+      console.error("Semester Results Error:", error);
+    }
+  }
   loadStudentData();
   loadAttendance();
   loadAssignments();
-  loadResults();
   loadNotices();
+  loadSemesterResults();
 
   console.log("Student Dashboard Loaded");
   /* Dashboard Cards*/
-  document.getElementById("attendance-value").textContent = "95%";
-  document.getElementById("assignments-value").textContent = "3";
   document.getElementById("cgpa-value").textContent = "8.2";
   /* Sections */
   const dashboardSection = document.querySelector(".welcome-section");
@@ -342,32 +397,22 @@ document.addEventListener("DOMContentLoaded", function () {
     noticesSection.style.display = "block";
   };
   /* Initial Page */
-  const logoutLink = document.getElementById("logout-link");
+  const logoutLink = document.querySelector('a[href="#logout"]');
 
-  logoutLink.onclick = function (event) {
+  logoutLink.onclick = async function (event) {
     event.preventDefault();
 
-    const confirmLogout = confirm("Are you sure you want to logout?");
+    try {
+      await fetch("http://127.0.0.1:8000/api/logout/", {
+        method: "POST",
+        credentials: "include",
+      });
 
-    if (confirmLogout) {
       window.location.href = "login.html";
+    } catch (error) {
+      console.error("Logout Error:", error);
     }
+    s
   };
   showDashboard();
 });
-const logoutLink = document.querySelector('a[href="#logout"]');
-
-logoutLink.onclick = async function (event) {
-  event.preventDefault();
-
-  try {
-    await fetch("http://127.0.0.1:8000/api/logout/", {
-      method: "POST",
-      credentials: "include",
-    });
-
-    window.location.href = "login.html";
-  } catch (error) {
-    console.error("Logout Error:", error);
-  }
-};
