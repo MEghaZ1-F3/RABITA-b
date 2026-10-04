@@ -615,6 +615,151 @@ document.addEventListener("DOMContentLoaded", function () {
   document
     .getElementById("result-semester")
     .addEventListener("change", loadResultStudents);
+  async function loadResultSubjects() {
+    const studentId = document.getElementById("result-student").value;
+    const subjectSelect = document.getElementById("result-subject");
+
+    subjectSelect.innerHTML =
+      '<option value="">Select Subject</option>';
+
+    if (!studentId) return;
+
+    try {
+      const response = await fetch(
+        "http://127.0.0.1:8000/students/",
+        {
+          credentials: "include"
+        }
+      );
+
+      const students = await response.json();
+
+      const student = students.find(
+        item => String(item.id) === studentId
+      );
+
+      if (!student) return;
+
+      const subjectResponse = await fetch(
+        `http://127.0.0.1:8000/api/faculty-subjects/?branch=${student.branch}&semester=${student.semester}`,
+        {
+          credentials: "include"
+        }
+      );
+
+      const data = await subjectResponse.json();
+
+      data.subjects.forEach(function (subject) {
+        const option = document.createElement("option");
+
+        option.value = subject.id;
+        option.textContent = subject.name;
+
+        subjectSelect.appendChild(option);
+      });
+
+    }
+    catch (error) {
+      console.error("Result Subjects Error:", error);
+    }
+  }
+
+  document
+    .getElementById("result-student")
+    .addEventListener("change", loadResultSubjects);
+  document.getElementById("show-ct2").addEventListener("click", function () {
+
+    document.getElementById("ct2-section").style.display = "block";
+
+    this.style.display = "none";
+  });
+  async function loadSavedInternalMarks() {
+    const studentId = document.getElementById("result-student").value;
+    const subjectId = document.getElementById("result-subject").value;
+    const semester = document.getElementById("result-semester").value;
+
+    if (!studentId || !subjectId || !semester) return;
+
+    try {
+      const response = await fetch(
+        `http://127.0.0.1:8000/api/get-internal-marks/?student_id=${studentId}&subject_id=${subjectId}&semester=${semester}`,
+        {
+          credentials: "include"
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        console.error(data.error);
+        return;
+      }
+
+      document.getElementById("ct1-marks").value =
+        data.ct1_marks || "";
+
+      if (data.ct2_marks > 0) {
+        document.getElementById("ct2-section").style.display = "block";
+        document.getElementById("show-ct2").style.display = "none";
+        document.getElementById("ct2-marks").value =
+          data.ct2_marks;
+      }
+
+    } catch (error) {
+      console.error("Load Internal Marks Error:", error);
+    }
+  }
+  async function saveInternalMarks() {
+    const studentId = document.getElementById("result-student").value;
+    const subjectId = document.getElementById("result-subject").value;
+    const semester = document.getElementById("result-semester").value;
+    const ct1Marks = document.getElementById("ct1-marks").value;
+    const ct2Marks = document.getElementById("ct2-marks").value || 0;
+
+    if (!studentId || !subjectId || !semester || ct1Marks === "") {
+      alert("Please fill all required fields.");
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        "http://127.0.0.1:8000/api/save-internal-marks/",
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            student_id: studentId,
+            subject_id: subjectId,
+            semester: semester,
+            ct1_marks: Number(ct1Marks),
+            ct2_marks: Number(ct2Marks)
+          })
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        alert(data.error || "Failed to save marks.");
+        return;
+      }
+
+      alert("Internal marks of CT saved successfully!");
+
+    } catch (error) {
+      console.error("Save Internal Marks Error:", error);
+      alert("Unable to save marks.");
+    }
+  }
+  document
+    .getElementById("save-result")
+    .addEventListener("click", saveInternalMarks);
+  document
+    .getElementById("result-subject")
+    .addEventListener("change", loadSavedInternalMarks);
 
   loadFacultyData();
   loadStudents();
