@@ -419,11 +419,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 <td>${submission.submitted_at}</td>
                 <td>${submission.status}</td>
                 <td>
+                    <a
+                        href="http://127.0.0.1:8000${submission.soft_copy_url}"
+                        class="view-btn">
+                        View File
+                    </a>
+
                     <button
                         class="view-btn review-btn"
                         type="button">
                         Review
                     </button>
+
                 </td>
             `;
 
@@ -478,6 +485,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const remarks = document.getElementById(
       "review-remarks"
     ).value;
+    const hardCopyReceived = document.getElementById(
+      "hard-copy-received"
+    ).checked;
 
     try {
 
@@ -492,7 +502,8 @@ document.addEventListener("DOMContentLoaded", function () {
           body: JSON.stringify({
             submission_id: submissionId,
             status: status,
-            remarks: remarks
+            remarks: remarks,
+            hard_copy_received: hardCopyReceived
           })
         }
       );

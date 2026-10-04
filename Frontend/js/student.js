@@ -119,6 +119,10 @@ document.addEventListener("DOMContentLoaded", function () {
           <span class="status-badge ${assignment.status}">
             ${assignment.status}
           </span>
+          <br>
+          <small>
+            ${assignment.hard_copy_received ? "✓ Hard Copy Received" : "Hard Copy Pending"}
+          </small>
         </td>
 
         <td>

@@ -39,6 +39,11 @@ def my_assignments(request):
             'description': assignment.description,
             'due_date': assignment.due_date,
             'status': status,
+            'hard_copy_received': (
+                submission.hard_copy_received
+                if submission
+                else False
+            )
         })
 
     return JsonResponse({
@@ -175,6 +180,35 @@ def submit_assignment(request):
             {'error': 'Assignment not found'},
             status=404
         )
+    existing_submission = AssignmentSubmission.objects.filter(
+        assignment=assignment,
+        student=request.user
+    ).first()
+    if existing_submission:
+
+        if existing_submission.status == 'approved':
+            return JsonResponse(
+                {'error': "Don't be smart, This assignment is already approved."},
+                status=400
+            )
+
+        if existing_submission.status == 'rejected':
+            existing_submission.soft_copy = soft_copy
+            existing_submission.status = 'pending'
+            existing_submission.professor_remarks = ''
+            existing_submission.hard_copy_received = False
+            existing_submission.save()
+
+            return JsonResponse({
+                'message': 'Assignment resubmitted successfully',
+                'submission_id': existing_submission.id,
+                'status': existing_submission.status
+            })
+
+        return JsonResponse(
+            {'error': 'Just wait, Assignment is already submitted and under review.'},
+            status=400
+        )
 
     submission = AssignmentSubmission.objects.create(
         assignment=assignment,
@@ -222,6 +256,7 @@ def faculty_submissions(request):
             'submitted_at': submission.submitted_at,
             'status': submission.status,
             'professor_remarks': submission.professor_remarks,
+            'soft_copy_url': submission.soft_copy.url,
         })
 
     return JsonResponse({
@@ -253,6 +288,7 @@ def review_submission(request):
     submission_id = data.get('submission_id')
     status = data.get('status')
     remarks = data.get('remarks', '')
+    hard_copy_received = data.get('hard_copy_received', False)
 
     if not submission_id or status not in ['approved', 'rejected']:
         return JsonResponse(
@@ -278,6 +314,7 @@ def review_submission(request):
 
     submission.status = status
     submission.professor_remarks = remarks
+    submission.hard_copy_received = hard_copy_received
     submission.save()
 
     return JsonResponse({

@@ -64,6 +64,8 @@ class AssignmentSubmission(models.Model):
         default='pending'
     )
 
+    hard_copy_received = models.BooleanField(default=False)
+
     professor_remarks = models.TextField(
         blank=True
     )
