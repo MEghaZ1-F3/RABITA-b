@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("attendance").classList.add("page-hidden");
     document.getElementById("assignments").classList.add("page-hidden");
     document.getElementById("submissions").classList.add("page-hidden");
+    document.getElementById("results").classList.add("page-hidden");
     document.getElementById("notices").classList.add("page-hidden");
     document.getElementById("reports").classList.add("page-hidden");
 
@@ -37,6 +38,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (sectionName === "submissions") {
       document.getElementById("submissions").classList.remove("page-hidden");
+    }
+    if (sectionName === "results") {
+      document.getElementById("results").classList.remove("page-hidden");
     }
 
     if (sectionName === "notices") {
@@ -553,6 +557,64 @@ document.addEventListener("DOMContentLoaded", function () {
     reviewSubmission("rejected");
 
   });
+  async function loadResultStudents() {
+
+    const semester = document.getElementById("result-semester").value;
+    const studentSelect = document.getElementById("result-student");
+
+    studentSelect.innerHTML =
+      '<option value="">Select Student</option>';
+
+    if (!semester) {
+      return;
+    }
+
+    try {
+
+      const response = await fetch(
+        "http://127.0.0.1:8000/students/",
+        {
+          credentials: "include"
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        console.error(data.error);
+        return;
+      }
+
+      data
+        .filter(function (student) {
+          return String(student.semester) === semester;
+        })
+        .forEach(function (student) {
+
+          const option = document.createElement("option");
+
+          option.value = student.id;
+
+          option.textContent =
+            student.name + " - " +
+            (student.student_id ||
+              student.temporary_id ||
+              "-");
+
+          studentSelect.appendChild(option);
+        });
+
+    } catch (error) {
+
+      console.error(
+        "Result Students Error:",
+        error
+      );
+    }
+  }
+  document
+    .getElementById("result-semester")
+    .addEventListener("change", loadResultStudents);
 
   loadFacultyData();
   loadStudents();

@@ -288,7 +288,51 @@
           </div>
 
         </div>
+      </section>
+      <section class="faculty-results page-hidden" id="results">
 
+        <div class="section-header">
+          <div>
+            <h3>Student Results</h3>
+            <p>Enter and manage student marks</p>
+          </div>
+        </div>
+        <div class="result-form">
+
+          <label>Semester</label>
+          <select id="result-semester">
+            <option value="">Select Semester</option>
+            <option value="1">1st Semester</option>
+            <option value="2">2nd Semester</option>
+            <option value="3">3rd Semester</option>
+            <option value="4">4th Semester</option>
+            <option value="5">5th Semester</option>
+            <option value="6">6th Semester</option>
+            <option value="7">7th Semester</option>
+            <option value="8">8th Semester</option>
+          </select>
+
+          <label>Student</label>
+          <select id="result-student">
+            <option value="">Select Student</option>
+          </select>
+
+          <label>Subject</label>
+          <select id="result-subject">
+            <option value="">Select Subject</option>
+          </select>
+
+          <label>CT-1 Marks</label>
+          <input type="number" id="ct1-marks" min="0" max="20" placeholder="0 - 20">
+
+          <label>CT-2 Marks</label>
+          <input type="number" id="ct2-marks" min="0" max="20" placeholder="0 - 20">
+
+          <button id="save-result">
+            Save Marks
+          </button>
+
+        </div>
       </section>
       <section class="recent-notices" id="notices">
         <h3>Recent Notices</h3>
