@@ -50,6 +50,17 @@ def save_internal_marks(request):
     semester = data.get('semester')
     ct1_marks = data.get('ct1_marks', 0)
     ct2_marks = data.get('ct2_marks', 0)
+    if not (0 <= int(ct1_marks) <= 20):
+        return JsonResponse(
+            {'error': 'CT-1 marks must be between 0 and 20'},
+            status=400
+        )
+
+    if not (0 <= int(ct2_marks) <= 20):
+        return JsonResponse(
+            {'error': 'CT-2 marks must be between 0 and 20'},
+            status=400
+        )
 
     if not student_id or not subject_id or not semester:
         return JsonResponse({

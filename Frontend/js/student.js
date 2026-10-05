@@ -123,6 +123,10 @@ document.addEventListener("DOMContentLoaded", function () {
           <small>
             ${assignment.hard_copy_received ? "✓ Hard Copy Received" : "Hard Copy Pending"}
           </small>
+          ${assignment.professor_remarks ? `
+            <br>
+            <small>Reason: ${assignment.professor_remarks}</small>
+          ` : ""}
         </td>
 
         <td>

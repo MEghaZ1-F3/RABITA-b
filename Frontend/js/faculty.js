@@ -716,6 +716,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const semester = document.getElementById("result-semester").value;
     const ct1Marks = document.getElementById("ct1-marks").value;
     const ct2Marks = document.getElementById("ct2-marks").value || 0;
+    if (Number(ct1Marks) < 0 || Number(ct1Marks) > 20) {
+      alert("CT-1 marks must be between 0 and 20.");
+      return;
+    }
+
+    if (Number(ct2Marks) < 0 || Number(ct2Marks) > 20) {
+      alert("CT-2 marks must be between 0 and 20.");
+      return;
+    }
 
     if (!studentId || !subjectId || !semester || ct1Marks === "") {
       alert("Please fill all required fields.");

@@ -43,6 +43,11 @@ def my_assignments(request):
                 submission.hard_copy_received
                 if submission
                 else False
+            ),
+            'professor_remarks': (
+                submission.professor_remarks
+                if submission
+                else ''
             )
         })
 
