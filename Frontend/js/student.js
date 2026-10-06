@@ -44,6 +44,44 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error("Student Data Error:", error);
     }
   }
+  async function loadInternalMarks() {
+    try {
+      const response = await fetch(
+        "http://127.0.0.1:8000/api/my-internal-marks/",
+        {
+          credentials: "include"
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        console.error(data.error);
+        return;
+      }
+
+      const tbody = document.getElementById("internal-marks-body");
+
+      tbody.innerHTML = "";
+
+      data.marks.forEach(function (mark) {
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+        <td>${mark.semester}</td>
+        <td>${mark.subject}</td>
+        <td>${mark.ct1_marks}/20</td>
+        <td>${mark.ct2_marks}/20</td>
+        <td>${mark.total}/40</td>
+      `;
+
+        tbody.appendChild(row);
+      });
+
+    } catch (error) {
+      console.error("Internal Marks Error:", error);
+    }
+  }
   async function loadAttendance() {
     try {
       const response = await fetch("http://127.0.0.1:8000/api/my-attendance/", {
@@ -319,6 +357,7 @@ document.addEventListener("DOMContentLoaded", function () {
   loadAssignments();
   loadNotices();
   loadSemesterResults();
+  loadInternalMarks();
 
   console.log("Student Dashboard Loaded");
   /* Dashboard Cards*/

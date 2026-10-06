@@ -603,3 +603,229 @@ body {
   cursor: pointer;
   font-weight: 600;
 }
+/* INTERNAL MARKS SECTION */
+
+.student-internal-marks {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 14px;
+    margin-top: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+/* Heading */
+
+.student-internal-marks h3 {
+    margin: 0 0 20px 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: #222;
+}
+
+/* Table */
+
+.student-internal-marks table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+/* Table Header */
+
+.student-internal-marks thead {
+    background: #f7e5d0;
+}
+
+.student-internal-marks th {
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 700;
+    color: #333;
+    border-bottom: 1px solid #ead8c5;
+}
+
+/* Table Body */
+
+.student-internal-marks td {
+    padding: 14px 16px;
+    font-size: 14px;
+    color: #555;
+    border-bottom: 1px solid #eeeeee;
+}
+
+/* Last Row */
+
+.student-internal-marks tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Hover Effect */
+
+.student-internal-marks tbody tr:hover {
+    background: #fafafa;
+}
+
+/* Total Marks */
+
+.student-internal-marks td:last-child {
+    font-weight: 700;
+    color: #222;
+}
+
+/* Empty Table Message */
+
+.student-internal-marks tbody:empty::after {
+    content: "No internal marks available.";
+    display: block;
+    padding: 20px;
+    text-align: center;
+    color: #888;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+
+    .student-internal-marks {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    .student-internal-marks table {
+        min-width: 600px;
+    }
+
+    .student-internal-marks th,
+    .student-internal-marks td {
+        padding: 12px;
+        font-size: 13px;
+    }
+
+    .student-internal-marks h3 {
+        font-size: 20px;
+    }
+}
+/* =========================
+   RESULTS SECTION
+   ========================= */
+
+.student-results {
+    padding: 20px;
+}
+
+/* Semester Result Card */
+
+.semester-result-box,
+.semester-result-list,
+.student-internal-marks {
+    background: #ffffff;
+    padding: 22px;
+    margin-bottom: 20px;
+    border-radius: 14px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+/* Headings */
+
+.semester-result-box h3,
+.semester-result-list h3,
+.student-internal-marks h3 {
+    margin: 0 0 15px;
+    font-size: 20px;
+    color: #222;
+}
+
+/* Description */
+
+.semester-result-box p {
+    color: #777;
+    margin-bottom: 18px;
+}
+
+/* Labels */
+
+.semester-result-box label {
+    display: block;
+    margin: 12px 0 6px;
+    font-weight: 600;
+    color: #444;
+}
+
+/* Select & File */
+
+.semester-result-box select,
+.semester-result-box input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+/* Upload Button */
+
+#upload-semester-result {
+    margin-top: 15px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* Tables */
+
+.semester-result-list table,
+.student-internal-marks table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Table Header */
+
+.semester-result-list th,
+.student-internal-marks th {
+    padding: 13px;
+    text-align: left;
+    background: #f7e5d0;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Table Data */
+
+.semester-result-list td,
+.student-internal-marks td {
+    padding: 13px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Hover */
+
+.semester-result-list tbody tr:hover,
+.student-internal-marks tbody tr:hover {
+    background: #fafafa;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+    .student-results {
+        padding: 10px;
+    }
+
+    .semester-result-box,
+    .semester-result-list,
+    .student-internal-marks {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    .semester-result-list table,
+    .student-internal-marks table {
+        min-width: 600px;
+    }
+}

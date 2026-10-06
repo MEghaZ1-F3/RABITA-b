@@ -3,6 +3,7 @@ from .views import(
      my_results,
      save_internal_marks,
      get_internal_marks,
+     my_internal_marks,
      upload_semester_result,
      faculty_semester_results,
      review_semester_result,
@@ -19,6 +20,9 @@ urlpatterns = [
     ),
     path(
         'api/get-internal-marks/',get_internal_marks,name='get-internal-marks'
+    ),
+    path(
+        'api/my-internal-marks/',my_internal_marks,name='my-internal-marks'
     ),
     path(
         'api/upload-semester-result/',upload_semester_result,name='upload-semester-result'

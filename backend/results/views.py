@@ -144,6 +144,40 @@ def get_internal_marks(request):
         'ct1_marks': marks.ct1_marks,
         'ct2_marks': marks.ct2_marks
     })
+def my_internal_marks(request):
+    if not request.user.is_authenticated:
+        return JsonResponse(
+            {'error': 'Login required'},
+            status=401
+        )
+
+    if request.user.role != 'student':
+        return JsonResponse(
+            {'error': 'Only students can view marks'},
+            status=403
+        )
+
+    marks_list = InternalMarks.objects.filter(
+        student=request.user
+    ).select_related('subject').order_by(
+        'semester',
+        'subject__subject_name'
+    )
+
+    data = []
+
+    for marks in marks_list:
+        data.append({
+            'semester': marks.semester,
+            'subject': marks.subject.subject_name,
+            'ct1_marks': marks.ct1_marks,
+            'ct2_marks': marks.ct2_marks,
+            'total': marks.ct1_marks + marks.ct2_marks
+        })
+
+    return JsonResponse({
+        'marks': data
+    })
 @csrf_exempt
 def upload_semester_result(request):
     if not request.user.is_authenticated:
