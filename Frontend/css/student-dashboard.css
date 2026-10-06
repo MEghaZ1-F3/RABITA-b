@@ -11,14 +11,14 @@
   --transition: 0.2s ease;
 }
 
-/* 2. Reset (*) */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* 3. Body */
+/* Body */
 body {
   min-height: 100vh;
   display: flex;
@@ -35,7 +35,7 @@ body {
   line-height: 1.5;
 }
 
-/* 4. Sidebar */
+/* Sidebar */
 .sidebar {
   width: var(--sidebar-width);
   height: 100vh;
@@ -49,7 +49,6 @@ body {
   flex-shrink: 0;
 }
 
-/* 5. Sidebar logo */
 .sidebar .logo {
   font-family: Georgia, "Times New Roman", serif;
   font-size: 1.6rem;
@@ -61,7 +60,7 @@ body {
   padding-left: 0.75rem;
 }
 
-/* 6. Sidebar navigation */
+/* Sidebar navigation */
 .sidebar-nav ul {
   list-style: none;
   display: flex;
@@ -80,7 +79,6 @@ body {
   transition: all var(--transition);
 }
 
-/* 7. Navigation hover/active */
 .sidebar-nav a:hover,
 .sidebar-nav a.active {
   background-color: var(--accent-soft);
@@ -89,7 +87,7 @@ body {
   transform: translateX(3px);
 }
 
-/* 8. Dashboard main */
+/* Dashboard layout */
 .dashboard-main {
   flex: 1;
   display: flex;
@@ -97,7 +95,7 @@ body {
   min-width: 0;
 }
 
-/* 9. Top navbar */
+/* Top navbar */
 .top-navbar {
   height: 70px;
   background-color: var(--card-bg);
@@ -119,7 +117,6 @@ body {
   text-transform: uppercase;
 }
 
-/* 10. Navbar buttons */
 .navbar-actions {
   display: flex;
   align-items: center;
@@ -146,7 +143,7 @@ body {
   transform: translateY(-1px);
 }
 
-/* 11. Main content */
+/* Main content */
 .main-content {
   padding: 2.5rem;
   display: flex;
@@ -154,7 +151,7 @@ body {
   gap: 2rem;
 }
 
-/* 12. Welcome section */
+/* Welcome section */
 .welcome-section h1 {
   font-family: Georgia, "Times New Roman", serif;
   font-size: 2.2rem;
@@ -168,7 +165,7 @@ body {
   font-size: 0.95rem;
 }
 
-/* 13. Summary cards */
+/* Summary cards */
 .summary-cards {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -200,19 +197,17 @@ body {
   line-height: 1;
 }
 
-/* 14. Summary card hover */
 .summary-card:hover {
   transform: translateY(-3px);
   border-color: var(--accent);
   box-shadow: 0 8px 20px rgba(216, 140, 120, 0.15);
 }
 
-/* 15. Shared Panel Containers */
+/* Shared dashboard panels */
 .recent-student-activity,
 .my-attendance,
 .My-assignments,
-.recent-notices,
-.student-results {
+.recent-notices {
   background-color: var(--card-bg);
   border: 1px solid var(--border);
   border-radius: 12px;
@@ -222,15 +217,14 @@ body {
 .recent-student-activity h3,
 .my-attendance h3,
 .My-assignments h3,
-.recent-notices h3,
-.student-results h3 {
+.recent-notices h3 {
   font-family: Georgia, "Times New Roman", serif;
   font-size: 1.35rem;
   font-weight: 700;
   margin-bottom: 1.25rem;
 }
 
-/* 16. Activity items */
+/* Activity items */
 .activity-list {
   display: flex;
   flex-direction: column;
@@ -263,7 +257,7 @@ body {
   font-size: 0.8rem;
 }
 
-/* 17. Tables & Horizontal scroll */
+/* Attendance and assignment tables */
 .my-attendance,
 .My-assignments {
   overflow-x: auto;
@@ -294,7 +288,6 @@ body {
   color: var(--text-muted);
 }
 
-/* 18. Table row hover */
 .my-attendance tbody tr,
 .My-assignments tbody tr {
   transition: background-color var(--transition);
@@ -305,7 +298,7 @@ body {
   background-color: var(--accent-soft);
 }
 
-/* 19. Action button */
+/* Action button */
 .view-btn {
   background-color: var(--accent-soft);
   color: var(--accent-hover);
@@ -324,52 +317,7 @@ body {
   border-color: var(--accent);
 }
 
-/* RESULTS SECTION */
-
-.student-results {
-  margin-top: 25px;
-  padding: 25px;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-}
-
-.student-results h3 {
-  margin-bottom: 20px;
-  font-size: 22px;
-  color: #333;
-}
-
-.student-results table {
-  width: 100%;
-  border-collapse: collapse;
-  overflow: hidden;
-  border-radius: 8px;
-}
-
-.student-results th {
-  padding: 14px;
-  text-align: left;
-  background: #f5e6d3;
-  color: #333;
-  font-weight: 600;
-}
-
-.student-results td {
-  padding: 14px;
-  border-bottom: 1px solid #eeeeee;
-  color: #555;
-}
-
-.student-results tbody tr:hover {
-  background: #faf7f2;
-}
-
-.student-results td:last-child {
-  font-weight: 600;
-}
-
-/* 20. Notices Section */
+/* Notices */
 .notice-list {
   display: flex;
   flex-direction: column;
@@ -402,21 +350,8 @@ body {
   font-size: 0.8rem;
 }
 
-/* Results Section */
-.student-results {
-  display: none;
-}
-
-/* 21. Responsive / Mobile design */
-@media (max-width: 1024px) {
-  .summary-cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* Profile Section */
+/* Student profile */
 .student-profile {
-  display: none;
   background-color: var(--card-bg);
   border: 1px solid var(--border);
   border-radius: 12px;
@@ -455,11 +390,237 @@ body {
   font-size: 0.95rem;
 }
 
-@media (max-width: 768px) {
-  .profile-grid {
-    grid-template-columns: 1fr;
-  }
+/* Hide dashboard sections until selected */
+.student-profile,
+.my-attendance,
+.My-assignments,
+.student-results,
+.recent-notices {
+  display: none;
+}
 
+/* Assignment status badges */
+.status-badge {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status-badge.pending {
+  background: #fffdf7;
+  color: #f8c52c;
+}
+
+.status-badge.approved {
+  background: #ffffff;
+  color: #00a326;
+}
+
+.status-badge.rejected {
+  background: #f6f5f5;
+  color: #6c020c;
+}
+
+/* Semester result status */
+.result-status {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.result-status.approved {
+  background: #d4edda;
+  color: #155724;
+}
+
+.result-status.pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.result-status.rejected {
+  background: #f6f5f5;
+  color: #9f1120;
+}
+
+/* Results section: transparent outer container */
+.student-results {
+  margin-top: 25px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.student-results h3 {
+  margin-bottom: 20px;
+  font-size: 22px;
+  color: #333;
+}
+
+/* Results tables */
+.student-results table,
+.semester-result-list table,
+.student-internal-marks table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.student-results table {
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.student-results th {
+  padding: 14px;
+  text-align: left;
+  background: #f5e6d3;
+  color: #333;
+  font-weight: 600;
+}
+
+.student-results td {
+  padding: 14px;
+  border-bottom: 1px solid #eeeeee;
+  color: #555;
+}
+
+.student-results tbody tr:hover {
+  background: #faf7f2;
+}
+
+.student-results td:last-child {
+  font-weight: 600;
+}
+
+/* Semester result upload and list cards */
+.semester-result-box,
+.semester-result-list,
+.student-internal-marks {
+  background: #ffffff;
+  padding: 22px;
+  margin-bottom: 20px;
+  border-radius: 14px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.semester-result-box h3,
+.semester-result-list h3 {
+  margin: 0 0 15px;
+  font-size: 20px;
+  color: #222;
+}
+
+.semester-result-box p {
+  color: #777;
+  margin-bottom: 18px;
+}
+
+.semester-result-box label {
+  display: block;
+  margin: 12px 0 6px;
+  font-weight: 600;
+  color: #444;
+}
+
+.semester-result-box select,
+.semester-result-box input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+#upload-semester-result {
+  margin-top: 15px;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.semester-result-list th,
+.semester-result-list td {
+  padding: 13px;
+  border-bottom: 1px solid #ddd;
+}
+
+.semester-result-list th {
+  text-align: left;
+  background: #f7e5d0;
+}
+
+/* CT Marks card and table */
+.student-internal-marks h3 {
+  margin: 0 0 15px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #222;
+}
+
+.student-internal-marks table {
+  background: #ffffff;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.student-internal-marks thead {
+  background: #f7e5d0;
+}
+
+.student-internal-marks th {
+  padding: 13px;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 700;
+  color: #333;
+  border-bottom: 1px solid #ddd;
+}
+
+.student-internal-marks td {
+  padding: 13px;
+  font-size: 14px;
+  color: #555;
+  border-bottom: 1px solid #eee;
+}
+
+.student-internal-marks tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.student-internal-marks tbody tr:hover {
+  background: #fafafa;
+}
+
+.student-internal-marks td:last-child {
+  font-weight: 700;
+  color: #222;
+}
+
+.student-internal-marks tbody:empty::after {
+  content: "No internal marks available.";
+  display: block;
+  padding: 20px;
+  text-align: center;
+  color: #888;
+}
+
+/* Responsive layout */
+@media (max-width: 1024px) {
+  .summary-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
   body {
     flex-direction: column;
   }
@@ -492,340 +653,30 @@ body {
   .summary-cards {
     grid-template-columns: 1fr;
   }
-}
 
-/* Hide inner dashboard sections initially */
+  .profile-grid {
+    grid-template-columns: 1fr;
+  }
 
-.student-profile,
-.my-attendance,
-.My-assignments,
-.student-results,
-.recent-notices {
-  display: none;
-}
-
-@media (max-width: 768px) {
-  .student-results {
+  .student-results,
+  .student-internal-marks {
     padding: 15px;
     overflow-x: auto;
   }
 
-  .student-results table {
+  .student-results table,
+  .semester-result-list table,
+  .student-internal-marks table {
     min-width: 600px;
   }
-}
 
-/* Assignment Status */
+  .student-internal-marks th,
+  .student-internal-marks td {
+    padding: 12px;
+    font-size: 13px;
+  }
 
-.status-badge {
-  display: inline-block;
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: capitalize;
-}
-
-.status-badge.pending {
-  background: #fffdf7;
-  color: #f8c52c;
-}
-
-.status-badge.approved {
-  background: #ffffff;
-  color: #00a326;
-}
-
-.status-badge.rejected {
-  background: #f6f5f5;
-  color: #6c020c;
-}
-
-/* Result Status */
-.result-status {
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: capitalize;
-}
-
-.result-status.approved {
-  background: #d4edda;
-  color: #155724;
-}
-
-.result-status.pending {
-  background: #fff3cd;
-  color: #856404;
-}
-
-.result-status.rejected {
-  background: #f6f5f5;
-  color: #9f1120;
-}
-/* Semester Result Upload Box */
-.semester-result-box {
-  background: #fffafa;
-  padding: 20px;
-  border-radius: 12px;
-  margin-bottom: 20px;
-}
-
-.semester-result-box h3 {
-  margin-bottom: 8px;
-}
-
-.semester-result-box p {
-  color: #777;
-  margin-bottom: 20px;
-}
-
-.semester-result-box label {
-  display: block;
-  margin: 12px 0 6px;
-  font-weight: 600;
-}
-
-.semester-result-box select,
-.semester-result-box input[type="file"] {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #fde8e8;
-  border-radius: 8px;
-}
-
-#upload-semester-result {
-  margin-top: 15px;
-  padding: 10px 18px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-}
-/* INTERNAL MARKS SECTION */
-
-.student-internal-marks {
-    background: #ffffff;
-    padding: 25px;
-    border-radius: 14px;
-    margin-top: 25px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
-}
-
-/* Heading */
-
-.student-internal-marks h3 {
-    margin: 0 0 20px 0;
-    font-size: 22px;
-    font-weight: 700;
-    color: #222;
-}
-
-/* Table */
-
-.student-internal-marks table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #ffffff;
-    overflow: hidden;
-    border-radius: 10px;
-}
-
-/* Table Header */
-
-.student-internal-marks thead {
-    background: #f7e5d0;
-}
-
-.student-internal-marks th {
-    padding: 14px 16px;
-    text-align: left;
-    font-size: 14px;
-    font-weight: 700;
-    color: #333;
-    border-bottom: 1px solid #ead8c5;
-}
-
-/* Table Body */
-
-.student-internal-marks td {
-    padding: 14px 16px;
-    font-size: 14px;
-    color: #555;
-    border-bottom: 1px solid #eeeeee;
-}
-
-/* Last Row */
-
-.student-internal-marks tbody tr:last-child td {
-    border-bottom: none;
-}
-
-/* Hover Effect */
-
-.student-internal-marks tbody tr:hover {
-    background: #fafafa;
-}
-
-/* Total Marks */
-
-.student-internal-marks td:last-child {
-    font-weight: 700;
-    color: #222;
-}
-
-/* Empty Table Message */
-
-.student-internal-marks tbody:empty::after {
-    content: "No internal marks available.";
-    display: block;
-    padding: 20px;
-    text-align: center;
-    color: #888;
-}
-
-/* Responsive */
-
-@media (max-width: 768px) {
-
-    .student-internal-marks {
-        padding: 15px;
-        overflow-x: auto;
-    }
-
-    .student-internal-marks table {
-        min-width: 600px;
-    }
-
-    .student-internal-marks th,
-    .student-internal-marks td {
-        padding: 12px;
-        font-size: 13px;
-    }
-
-    .student-internal-marks h3 {
-        font-size: 20px;
-    }
-}
-/* =========================
-   RESULTS SECTION
-   ========================= */
-
-.student-results {
-    padding: 20px;
-}
-
-/* Semester Result Card */
-
-.semester-result-box,
-.semester-result-list,
-.student-internal-marks {
-    background: #ffffff;
-    padding: 22px;
-    margin-bottom: 20px;
-    border-radius: 14px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
-}
-
-/* Headings */
-
-.semester-result-box h3,
-.semester-result-list h3,
-.student-internal-marks h3 {
-    margin: 0 0 15px;
+  .student-internal-marks h3 {
     font-size: 20px;
-    color: #222;
-}
-
-/* Description */
-
-.semester-result-box p {
-    color: #777;
-    margin-bottom: 18px;
-}
-
-/* Labels */
-
-.semester-result-box label {
-    display: block;
-    margin: 12px 0 6px;
-    font-weight: 600;
-    color: #444;
-}
-
-/* Select & File */
-
-.semester-result-box select,
-.semester-result-box input[type="file"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-sizing: border-box;
-}
-
-/* Upload Button */
-
-#upload-semester-result {
-    margin-top: 15px;
-    padding: 10px 18px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-/* Tables */
-
-.semester-result-list table,
-.student-internal-marks table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-/* Table Header */
-
-.semester-result-list th,
-.student-internal-marks th {
-    padding: 13px;
-    text-align: left;
-    background: #f7e5d0;
-    border-bottom: 1px solid #ddd;
-}
-
-/* Table Data */
-
-.semester-result-list td,
-.student-internal-marks td {
-    padding: 13px;
-    border-bottom: 1px solid #eee;
-}
-
-/* Hover */
-
-.semester-result-list tbody tr:hover,
-.student-internal-marks tbody tr:hover {
-    background: #fafafa;
-}
-
-/* Mobile */
-
-@media (max-width: 768px) {
-
-    .student-results {
-        padding: 10px;
-    }
-
-    .semester-result-box,
-    .semester-result-list,
-    .student-internal-marks {
-        padding: 15px;
-        overflow-x: auto;
-    }
-
-    .semester-result-list table,
-    .student-internal-marks table {
-        min-width: 600px;
-    }
+  }
 }
