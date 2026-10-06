@@ -131,6 +131,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       console.log("Faculty Students:", students);
       const tableBody = document.getElementById("faculty-students-body");
+      const studentCount = document.getElementById("student-count");
 
       if (!tableBody) {
         console.error("Students table not found");
@@ -138,6 +139,8 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       tableBody.innerHTML = "";
+      studentCount.textContent =
+        `${students.length} ${students.length === 1 ? "Student" : "Students"}`;
 
       students.forEach(function (student) {
         const row = document.createElement("tr");
