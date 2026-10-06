@@ -153,6 +153,38 @@ document.addEventListener("DOMContentLoaded", function () {
                 <td>${student.approval_status}</td>
                 <td><button class="student-view-btn"> View</button></td>
                 `;
+        const viewButton = row.querySelector(".student-view-btn");
+
+        viewButton.addEventListener("click", function () {
+
+          document.getElementById("detail-name").textContent =
+            student.name || "-";
+
+          document.getElementById("detail-student-id").textContent =
+            student.student_id || student.temporary_id || "-";
+
+          document.getElementById("detail-branch").textContent =
+            student.branch || "-";
+
+          document.getElementById("detail-semester").textContent =
+            student.semester || "-";
+
+          document.getElementById("detail-entry-type").textContent =
+            student.entry_type || "-";
+
+          document.getElementById("detail-admission-year").textContent =
+            student.admission_year || "-";
+
+          document.getElementById("detail-enrollment-number").textContent =
+            student.enrollment_number || "-";
+
+          document.getElementById("detail-approval-status").textContent =
+            student.approval_status || "-";
+
+          document
+            .getElementById("student-details-modal")
+            .classList.remove("page-hidden");
+        });
 
         tableBody.appendChild(row);
       });
@@ -160,6 +192,15 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error("Students Error:", error);
     }
   }
+  // Close modal button event listener
+  document
+    .getElementById("close-student-modal")
+    .addEventListener("click", function () {
+
+      document
+        .getElementById("student-details-modal")
+        .classList.add("page-hidden");
+    });
   async function loadMyStudentsAttendance() {
     try {
       const response = await fetch(
