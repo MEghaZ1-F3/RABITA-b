@@ -150,7 +150,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 <td>${student.student_id || student.temporary_id || "-"}</td>
                 <td>${student.branch || "-"}</td>
                 <td>${student.semester || "-"}</td>
-                <td>${student.approval_status}</td>
+                <td>
+                    <span class="student-status ${student.approval_status}">
+                        ${student.approval_status}
+                    </span>
+                </td>
                 <td><button class="student-view-btn"> View</button></td>
                 `;
         const viewButton = row.querySelector(".student-view-btn");
