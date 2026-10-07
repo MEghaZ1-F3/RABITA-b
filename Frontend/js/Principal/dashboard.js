@@ -202,25 +202,42 @@ document.querySelectorAll(".sidebar-nav a").forEach(function (link) {
 
         const sectionId = link.getAttribute("href").substring(1);
 
-        // Students
+        // Remove active from all //
+        document.querySelectorAll(".sidebar-nav a").forEach(function (item) {
+            item.classList.remove("active");
+        });
+
+        // Add active to clicked item
+        link.classList.add("active");
+
+        // Hide all dashboard content//
+        document.querySelector(".welcome-section").style.display = "none";
+        document.querySelector(".summary-cards").style.display = "none";
+        document.querySelector(".recent-student-activity").style.display = "none";
+        document.querySelector(".pending-approvals").style.display = "none";
+        document.querySelector(".recent-notices").style.display = "none";
+
+        document.getElementById("students").style.display = "none";
+        document.getElementById("faculty").style.display = "none";
+
+        // Students //
         if (sectionId === "students") {
 
-            document.getElementById("students").classList.remove("page-hidden");
+            document.getElementById("students").style.display = "block";
 
             loadCollegeStudents();
-
-            // Dashboard content hide
-            document.querySelector(".welcome-section").style.display = "none";
-            document.querySelector(".summary-cards").style.display = "none";
-            document.querySelector(".recent-student-activity").style.display = "none";
-            document.querySelector(".pending-approvals").style.display = "none";
-            document.querySelector(".recent-notices").style.display = "none";
         }
 
-        // Dashboard
-        if (sectionId === "dashboard") {
+        // Faculty//
+        if (sectionId === "faculty") {
 
-            document.getElementById("students").classList.add("page-hidden");
+            document.getElementById("faculty").style.display = "block";
+
+            loadCollegeFaculty();
+        }
+
+        // Dashboard//
+        if (sectionId === "dashboard") {
 
             document.querySelector(".welcome-section").style.display = "";
             document.querySelector(".summary-cards").style.display = "";
