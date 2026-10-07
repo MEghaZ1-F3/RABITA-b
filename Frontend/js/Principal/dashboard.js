@@ -219,6 +219,8 @@ document.querySelectorAll(".sidebar-nav a").forEach(function (link) {
 
         document.getElementById("students").style.display = "none";
         document.getElementById("faculty").style.display = "none";
+        document.getElementById("approvals").style.display = "none";
+        document.getElementById("notices").style.display = "none";
 
         // Students //
         if (sectionId === "students") {
@@ -234,6 +236,22 @@ document.querySelectorAll(".sidebar-nav a").forEach(function (link) {
             document.getElementById("faculty").style.display = "block";
 
             loadCollegeFaculty();
+        }
+
+        // Approvals
+        if (sectionId === "approvals") {
+
+            document.getElementById("approvals").style.display = "block";
+
+            loadStudentApprovals();
+        }
+
+        // Notices
+        if (sectionId === "notices") {
+
+            document.getElementById("notices").style.display = "block";
+
+            loadCollegeNotices();
         }
 
         // Dashboard//
