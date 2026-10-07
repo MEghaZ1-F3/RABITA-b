@@ -164,3 +164,4 @@ async function submitAssignment(assignmentId) {
 }
 
 window.submitAssignment = submitAssignment;
+loadAssignments();

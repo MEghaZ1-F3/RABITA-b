@@ -1,111 +1,145 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Principal Dashboard</title>
-    <link rel="stylesheet" href="css/principal-dashboard.css" />
-  </head>
-  <body>
-    <aside class="sidebar">
-      <h2 class="logo">Rabita</h2>
-      <nav class="sidebar-nav">
-        <ul>
-          <li><a href="#dashboard" class="active">Dashboard</a></li>
-          <li><a href="#students">Students</a></li>
-          <li><a href="#faculty">Faculty</a></li>
-          <li><a href="#approvals">Approvals</a></li>
-          <li><a href="#notices">Notices</a></li>
-          <li><a href="#reports">Reports</a></li>
-          <li><a href="#logout">Logout</a></li>
-        </ul>
-      </nav>
-    </aside>
-    <main class="dashboard-main">
-      <header class="top-navbar">
-        <span class="welcome-text">Welcome, Principal</span>
-        <div class="navbar-actions">
-          <button type="button" aria-label="Notifications">🔔</button>
-          <button type="button" aria-label="Profile">👤</button>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Principal Dashboard</title>
+  <link rel="stylesheet" href="css/principal-dashboard.css" />
+</head>
+
+<body>
+  <aside class="sidebar">
+    <h2 class="logo">Rabita</h2>
+    <nav class="sidebar-nav">
+      <ul>
+        <li><a href="#dashboard" class="active">Dashboard</a></li>
+        <li><a href="#students">Students</a></li>
+        <li><a href="#faculty">Faculty</a></li>
+        <li><a href="#approvals">Approvals</a></li>
+        <li><a href="#notices">Notices</a></li>
+        <li><a href="#reports">Reports</a></li>
+        <li><a href="#logout">Logout</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <main class="dashboard-main">
+    <header class="top-navbar">
+      <span class="welcome-text">Welcome, Principal</span>
+      <div class="navbar-actions">
+        <button type="button" aria-label="Notifications">🔔</button>
+        <button type="button" aria-label="Profile">👤</button>
+      </div>
+    </header>
+    <div class="main-content">
+      <section class="welcome-section">
+        <h1>Good Morning, Principal</h1>
+        <p>Here's what's happening in your college today.</p>
+      </section>
+      <section class="summary-cards">
+        <div class="summary-card">
+          <h3>Total Students</h3>
+          <p class="card-number">0</p>
         </div>
-      </header>
-      <div class="main-content">
-        <section class="welcome-section">
-          <h1>Good Morning, Principal</h1>
-          <p>Here's what's happening in your college today.</p>
-        </section>
-        <section class="summary-cards">
-          <div class="summary-card">
-            <h3>Total Students</h3>
-            <p class="card-number">0</p>
-          </div>
-          <div class="summary-card">
-            <h3>Total Faculty</h3>
-            <p class="card-number">0</p>
-          </div>
-          <div class="summary-card">
-            <h3>Pending Approvals</h3>
-            <p class="card-number">0</p>
-          </div>
-          <div class="summary-card">
-            <h3>Notices</h3>
-            <p class="card-number">0</p>
-          </div>
-        </section>
-        <section class="recent-student-activity">
-          <h3>Recent Student Activity</h3>
-
-          <div class="activity-list">
-            <div class="activity-item">
-              <span>New student registration</span>
-              <span>Today</span>
-            </div>
-
-            <div class="activity-item">
-              <span>Student profile updated</span>
-              <span>Today</span>
-            </div>
-
-            <div class="activity-item">
-              <span>New approval request</span>
-              <span>Today</span>
-            </div>
-          </div>
-        </section>
-        <section class="pending-approvals">
+        <div class="summary-card">
+          <h3>Total Faculty</h3>
+          <p class="card-number">0</p>
+        </div>
+        <div class="summary-card">
           <h3>Pending Approvals</h3>
+          <p class="card-number">0</p>
+        </div>
+        <div class="summary-card">
+          <h3>Notices</h3>
+          <p class="card-number">0</p>
+        </div>
+      </section>
+      <section class="recent-student-activity">
+        <h3>Recent Student Activity</h3>
+
+        <div class="activity-list">
+          <div class="activity-item">
+            <span>New student registration</span>
+            <span>Today</span>
+          </div>
+
+          <div class="activity-item">
+            <span>Student profile updated</span>
+            <span>Today</span>
+          </div>
+
+          <div class="activity-item">
+            <span>New approval request</span>
+            <span>Today</span>
+          </div>
+        </div>
+      </section>
+      <section class="College-students page-hidden" id="students">
+        <div class="section-header">
+          <h2>Students</h2>
+          <p>View all registered students</p>
+        </div>
+        <div class="student-table-container">
           <table>
             <thead>
               <tr>
-                <th>Student</th>
+                <th>Name</th>
                 <th>Student ID</th>
                 <th>Branch</th>
                 <th>Semester</th>
+                <th>Entry Type</th>
                 <th>Status</th>
-                <th>Action</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>Golu</td>
-                <td>MZ-001-MIN-27</td>
-                <td>Mining Engineering</td>
-                <td>1st</td>
-                <td>
-                  <span class="badge badge-pending">Pending</span>
-                </td>
-                <td>
-                  <button class="approve-btn">Approve</button>
-                  <button class="reject-btn">Reject</button>
-                </td>
-              </tr>
+            <tbody id="college-students-body">
             </tbody>
           </table>
-        </section>
-        <section class="recent-notices">
-          <h3>Recent Notices</h3>
-        </section>
-      </div>
-    </main>
-  </body>
+        </div>
+      </section>
+      <section class="College-faculty page-hidden" id="faculty">
+        <div class="section-header">
+          <h2>Faculty</h2>
+          <p>View all college faculty</p>
+        </div>
+        <div class="faculty-table-container">
+          <table>
+
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Branch</th>
+              </tr>
+            </thead>
+            <tbody id="college-faculty-body">
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section class="pending-approvals">
+        <h3>Pending Approvals</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Student</th>
+              <th>Student ID</th>
+              <th>Branch</th>
+              <th>Semester</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="pending-approvals-body">
+          </tbody>
+        </table>
+      </section>
+      <section class="recent-notices">
+        <h3>Recent Notices</h3>
+      </section>
+    </div>
+  </main>
+  <script src="js/Principal/dashboard.js"></script>
+  <script src="js/Principal/students.js"></script>
+  <script src="js/Principal/faculty.js"></script>
+</body>
+
 </html>
