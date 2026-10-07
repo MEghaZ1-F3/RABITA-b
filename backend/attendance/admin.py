@@ -8,16 +8,21 @@ class AttendanceAdmin(admin.ModelAdmin):
     list_display = (
         'student',
         'subject',
-        'total_classes',
-        'present_classes',
-        'percentage',
+        'date',
+        'class_number',
+        'status',
     )
 
     list_filter = (
         'subject',
+        'date',
+        'class_number',
+        'status',
     )
 
     search_fields = (
         'student__username',
         'student__student_id',
+        'student__temporary_id',
+        'subject__subject_name',
     )

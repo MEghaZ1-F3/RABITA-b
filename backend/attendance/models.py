@@ -1,29 +1,53 @@
 from django.db import models
 from users.models import User
+from subjects.models import Subject
 
 
 class Attendance(models.Model):
 
-    student = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE
+    STATUS_CHOICES = (
+        ('present', 'Present'),
+        ('absent', 'Absent'),
     )
 
-    subject = models.CharField(max_length=100)
+    student = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='attendance_records'
+    )
 
-    total_classes = models.PositiveIntegerField(default=0)
+    subject = models.ForeignKey(
+        Subject,
+        on_delete=models.CASCADE,
+        related_name='attendance_records'
+    )
 
-    present_classes = models.PositiveIntegerField(default=0)
+    date = models.DateField()
 
-    @property
-    def percentage(self):
-        if self.total_classes == 0:
-            return 0
+    class_number = models.PositiveIntegerField()
 
-        return round(
-            (self.present_classes / self.total_classes) * 100,
-            2
-        )
+    status = models.CharField(
+        max_length=10,
+        choices=STATUS_CHOICES
+    )
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=[
+                    'student',
+                    'subject',
+                    'date',
+                    'class_number'
+                ],
+                name='unique_student_subject_date_class'
+            )
+        ]
 
     def __str__(self):
-        return f"{self.student.username} - {self.subject}"
+        return (
+            f"{self.student.username} - "
+            f"{self.subject.subject_name} - "
+            f"{self.date} - "
+            f"Class {self.class_number}"
+        )

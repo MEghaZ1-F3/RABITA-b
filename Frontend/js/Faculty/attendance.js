@@ -150,3 +150,168 @@ attendanceSemester.addEventListener(
     "change",
     loadAttendanceStudents
 );
+async function saveAttendance() {
+
+    const subjectId = attendanceSubject.value;
+    const date = document.getElementById("attendance-date").value;
+    const classNumber = document.getElementById(
+        "attendance-class-number"
+    ).value;
+
+    if (!subjectId || !date || !classNumber) {
+        alert("Please select subject, date and class number.");
+        return;
+    }
+
+    const students = document.querySelectorAll(
+        "#attendance-students-body tr"
+    );
+
+    if (students.length === 0) {
+        alert("No students found.");
+        return;
+    }
+
+    for (const row of students) {
+
+        const radio = row.querySelector(
+            'input[type="radio"]:checked'
+        );
+
+        if (!radio) {
+            alert("Please mark attendance for every student.");
+            return;
+        }
+    }
+
+    try {
+
+        for (const row of students) {
+
+            const studentRadio = row.querySelector(
+                'input[type="radio"]:checked'
+            );
+
+            const studentId = studentRadio
+                .name
+                .replace("attendance-", "");
+
+            const status = studentRadio.value;
+
+            const response = await fetch(
+                "http://127.0.0.1:8000/api/save-attendance/",
+                {
+                    method: "POST",
+
+                    credentials: "include",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        student_id: studentId,
+                        subject_id: subjectId,
+                        date: date,
+                        class_number: classNumber,
+                        status: status
+                    })
+                }
+            );
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                alert(data.error || "Failed to save attendance.");
+                return;
+            }
+        }
+
+        alert("Attendance saved successfully!");
+
+    } catch (error) {
+
+        console.error(
+            "Save Attendance Error:",
+            error
+        );
+
+        alert("Unable to save attendance.");
+    }
+}
+
+
+document
+    .getElementById("save-attendance")
+    .addEventListener(
+        "click",
+        saveAttendance
+    );
+
+async function loadSavedAttendance() {
+
+    const subjectId = attendanceSubject.value;
+    const date = document.getElementById("attendance-date").value;
+    const classNumber = document.getElementById(
+        "attendance-class-number"
+    ).value;
+
+    if (!subjectId || !date || !classNumber) {
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            `http://127.0.0.1:8000/api/get-attendance/?subject_id=${subjectId}&date=${date}&class_number=${classNumber}`,
+            {
+                credentials: "include"
+            }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            console.error(data.error);
+            return;
+        }
+
+        data.attendance.forEach(function (record) {
+
+            const radio = document.querySelector(
+                `input[name="attendance-${record.student_id}"][value="${record.status}"]`
+            );
+
+            if (radio) {
+                radio.checked = true;
+            }
+
+        });
+
+    } catch (error) {
+
+        console.error(
+            "Load Saved Attendance Error:",
+            error
+        );
+
+    }
+}
+attendanceSubject.addEventListener(
+    "change",
+    loadSavedAttendance
+);
+
+document
+    .getElementById("attendance-date")
+    .addEventListener(
+        "change",
+        loadSavedAttendance
+    );
+
+document
+    .getElementById("attendance-class-number")
+    .addEventListener(
+        "change",
+        loadSavedAttendance
+    );
