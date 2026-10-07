@@ -99,3 +99,68 @@ async function loadAssignments() {
 
     }
 }
+async function submitAssignment(assignmentId) {
+
+    const fileInput =
+        document.getElementById(`file-${assignmentId}`);
+
+    if (!fileInput.files.length) {
+        alert("Please select a file first.");
+        return;
+    }
+
+    const formData = new FormData();
+
+    formData.append(
+        "assignment_id",
+        assignmentId
+    );
+
+    formData.append(
+        "soft_copy",
+        fileInput.files[0]
+    );
+
+    try {
+
+        const response = await fetch(
+            "http://127.0.0.1:8000/api/submit-assignment/",
+            {
+                method: "POST",
+                credentials: "include",
+                body: formData,
+            }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+
+            alert(
+                data.error ||
+                "Submission failed."
+            );
+
+            return;
+        }
+
+        alert(
+            "Assignment submitted successfully!"
+        );
+
+        loadAssignments();
+
+    } catch (error) {
+
+        console.error(
+            "Submission Error:",
+            error
+        );
+
+        alert(
+            "Unable to submit assignment."
+        );
+    }
+}
+
+window.submitAssignment = submitAssignment;
