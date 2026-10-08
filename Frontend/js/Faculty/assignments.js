@@ -213,6 +213,10 @@ document.addEventListener("click", async function (event) {
         });
 
         console.log("Selected Assignment Submissions:", submissions);
+        submissions.forEach(function (submission) {
+            console.log("Student:", submission.student);
+            console.log("Status:", submission.status);
+        });
 
     } catch (error) {
         console.error("View Submission Error:", error);
