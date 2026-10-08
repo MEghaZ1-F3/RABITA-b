@@ -184,17 +184,25 @@ document
 loadFacultyAssignments();
 
 document.addEventListener("click", async function (event) {
+
     if (!event.target.classList.contains("view-btn")) {
         return;
     }
+
     const assignmentId = event.target.dataset.assignmentId;
+
+    if (!assignmentId) {
+        return;
+    }
+
     console.log("Selected Assignment ID:", assignmentId);
 
     try {
+
         const response = await fetch(
             "http://127.0.0.1:8000/api/faculty-submissions/",
             {
-                credentials: "include",
+                credentials: "include"
             }
         );
 
@@ -205,32 +213,62 @@ document.addEventListener("click", async function (event) {
             return;
         }
 
-        console.log("Submissions:", data);
-        const assignmentId = event.target.dataset.assignmentId;
-
         const submissions = data.submissions.filter(function (submission) {
             return submission.assignment_id == assignmentId;
         });
 
-        console.log("Selected Assignment Submissions:", submissions);
+        console.log(
+            "Selected Assignment Submissions:",
+            submissions
+        );
+
+        const tableBody = document.getElementById(
+            "faculty-submission-body"
+        );
+
+        tableBody.innerHTML = "";
+
+        if (submissions.length === 0) {
+
+            tableBody.innerHTML = `
+                <tr>
+                    <td colspan="6">
+                        No submissions for this assignment.
+                    </td>
+                </tr>
+            `;
+
+            return;
+        }
+
         submissions.forEach(function (submission) {
+
             const row = document.createElement("tr");
 
             row.innerHTML = `
-                    <td>${submission.student}</td>
-                    <td>${submission.assignment}</td>
-                    <td>${submission.subject}</td>
-                    <td>${submission.submitted_at}</td>
-                    <td>${submission.status}</td>
-                    <td>
-                        <button class="view-btn">View</button>
-                    </td>
-                `;
+                <td>${submission.student}</td>
+                <td>${submission.assignment}</td>
+                <td>${submission.subject}</td>
+                <td>${submission.submitted_at}</td>
+                <td>${submission.status}</td>
+                <td>
+                    <a
+                        href="http://127.0.0.1:8000${submission.soft_copy_url}"
+                        class="view-btn"
+                        target="_blank">
+                        View File
+                    </a>
+                </td>
+            `;
 
-            document.getElementById("faculty-submission-body").appendChild(row);
+            tableBody.appendChild(row);
         });
 
     } catch (error) {
-        console.error("View Submission Error:", error);
+
+        console.error(
+            "View Submission Error:",
+            error
+        );
     }
 });

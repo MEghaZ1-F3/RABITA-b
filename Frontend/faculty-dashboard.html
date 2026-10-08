@@ -172,246 +172,19 @@
 
       </div>
       <section class="attendance-overview" id="attendance">
-          <div class="section-header">
-            <div>
-              <h3>Mark Attendance</h3>
-              <p>Select class details and mark student attendance</p>
-            </div>
+        <div class="section-header">
+          <div>
+            <h3>Mark Attendance</h3>
+            <p>Select class details and mark student attendance</p>
           </div>
+        </div>
 
-          <!-- Attendance Selection -->
-          <div class="attendance-controls">
+        <!-- Attendance Selection -->
+        <div class="attendance-controls">
 
-            <div class="attendance-field">
-              <label for="attendance-semester">Semester</label>
-              <select id="attendance-semester">
-                <option value="">Select Semester</option>
-                <option value="1">1st Semester</option>
-                <option value="2">2nd Semester</option>
-                <option value="3">3rd Semester</option>
-                <option value="4">4th Semester</option>
-                <option value="5">5th Semester</option>
-                <option value="6">6th Semester</option>
-                <option value="7">7th Semester</option>
-                <option value="8">8th Semester</option>
-              </select>
-            </div>
-
-            <div class="attendance-field">
-              <label for="attendance-subject">Subject</label>
-              <select id="attendance-subject">
-                <option value="">Select Subject</option>
-              </select>
-            </div>
-
-            <div class="attendance-field">
-              <label for="attendance-date">Date</label>
-              <input type="date" id="attendance-date">
-            </div>
-
-            <div class="attendance-field">
-              <label for="attendance-class-number">Class Number</label>
-              <select id="attendance-class-number">
-                <option value="">Select Class</option>
-                <option value="1">Class 1</option>
-                <option value="2">Class 2</option>
-                <option value="3">Class 3</option>
-              </select>
-            </div>
-
-          </div>
-          <!-- Students Attendance Table -->
-          <div class="attendance-table-container">
-            <table>
-              <thead>
-                <tr>
-                  <th>Student</th>
-                  <th>Student ID</th>
-                  <th>Attendance</th>
-                </tr>
-              </thead>
-              <tbody id="attendance-students-body">
-              </tbody>
-            </table>
-          </div>
-          <!-- Save Button -->
-          <div class="attendance-actions">
-            <button type="button" id="save-attendance">
-              Save Attendance
-            </button>
-          </div>
-        </section>
-        <section class="pending-assignments" id="assignments">
-          <div class="section-header">
-            <div>
-              <h3>Assignments</h3>
-              <p>Manage assignments semester-wise and subject-wise</p>
-            </div>
-          </div>
-          <div class="assignment-filters">
-            <div class="filter-group">
-              <label for="assignment-branch">Branch</label>
-
-              <select id="assignment-branch">
-                <option value="">Select Branch</option>
-                <option value="CSE">Computer Science Engineering</option>
-                <option value="MIN">Mining Engineering</option>
-                <option value="ME">Mechanical Engineering</option>
-                <option value="EE">Electrical Engineering</option>
-                <option value="CE">Civil Engineering</option>
-              </select>
-            </div>
-            <div class="filter-group">
-              <label for="assignment-semester">Semester</label>
-
-              <select id="assignment-semester">
-                <option value="">Select Semester</option>
-                <option value="1">1st Semester</option>
-                <option value="2">2nd Semester</option>
-                <option value="3">3rd Semester</option>
-                <option value="4">4th Semester</option>
-                <option value="5">5th Semester</option>
-                <option value="6">6th Semester</option>
-                <option value="7">7th Semester</option>
-                <option value="8">8th Semester</option>
-              </select>
-            </div>
-          </div>
-          <div class="assignment-subjects">
-            <h4>Subjects</h4>
-
-            <div id="assignment-subject-list">
-              <p class="empty-message">
-                Select branch and semester to view subjects.
-              </p>
-            </div>
-          </div>
-          <div class="assignment-list">
-            <div id="create-assignment-form" class="create-assignment-form page-hidden">
-              <h4>Create Assignment</h4>
-
-              <p>
-                Subject:
-                <strong id="selected-assignment-subject">-</strong>
-              </p>
-
-              <input type="text" id="assignment-title" placeholder="Assignment Title" />
-
-              <textarea id="assignment-description" placeholder="Assignment Description">
-              </textarea>
-
-              <input type="date" id="assignment-due-date" />
-
-              <button id="create-assignment-btn" class="report-btn">
-                Create Assignment
-              </button>
-            </div>
-            <h4>Assignments</h4>
-
-            <table>
-              <thead>
-                <tr>
-                  <th>Assignment Title</th>
-                  <th>Subject</th>
-                  <th>Due Date</th>
-                  <th>Submissions</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-
-              <tbody id="faculty-assignment-body">
-                <tr>
-                  <td colspan="5">No assignments selected.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-        <section class="faculty-submissions page-hidden" id="submissions">
-
-          <div class="section-header">
-            <div>
-              <h3>Assignment Submissions</h3>
-              <p>Review student assignment submissions</p>
-            </div>
-          </div>
-
-          <div class="submission-list">
-
-            <table>
-              <thead>
-                <tr>
-                  <th>Student</th>
-                  <th>Assignment</th>
-                  <th>Subject</th>
-                  <th>Submitted Date</th>
-                  <th>Status</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-
-              <tbody id="faculty-submission-body">
-
-                <tr>
-                  <td colspan="6">
-                    No submissions yet.
-                  </td>
-                </tr>
-
-              </tbody>
-            </table>
-
-          </div>
-
-          <div id="review-submission-box" class="review-submission-box page-hidden">
-
-            <h4>Review Submission</h4>
-
-            <p>
-              Student:
-              <strong id="review-student">-</strong>
-            </p>
-
-            <p>
-              Assignment:
-              <strong id="review-assignment">-</strong>
-            </p>
-            <label class="hard-copy-check">
-              <input type="checkbox" id="hard-copy-received">
-              Hard copy received
-            </label>
-
-            <textarea id="review-remarks" placeholder="Enter professor remarks..."></textarea>
-
-            <div class="review-actions">
-
-              <button type="button" id="approve-submission-btn" class="approve-btn">
-                Approve
-              </button>
-
-              <button type="button" id="reject-submission-btn" class="reject-btn">
-                Reject
-              </button>
-
-            </div>
-
-          </div>
-        </section>
-        <section class="faculty-results page-hidden" id="results">
-
-          <div class="section-header">
-            <div>
-              <h3>Results</h3>
-              <p>Manage CT marks and semester results</p>
-            </div>
-          </div>
-
-          <!-- Internal Marks -->
-          <div class="result-box">
-            <h4>CT Marks</h4>
-
-            <label>Semester</label>
-            <select id="result-semester">
+          <div class="attendance-field">
+            <label for="attendance-semester">Semester</label>
+            <select id="attendance-semester">
               <option value="">Select Semester</option>
               <option value="1">1st Semester</option>
               <option value="2">2nd Semester</option>
@@ -422,53 +195,280 @@
               <option value="7">7th Semester</option>
               <option value="8">8th Semester</option>
             </select>
+          </div>
 
-            <label>Student</label>
-            <select id="result-student">
-              <option value="">Select Student</option>
-            </select>
-
-            <label>Subject</label>
-            <select id="result-subject">
+          <div class="attendance-field">
+            <label for="attendance-subject">Subject</label>
+            <select id="attendance-subject">
               <option value="">Select Subject</option>
             </select>
+          </div>
 
-            <label>CT-1 Marks (20)</label>
-            <input type="number" id="ct1-marks" min="0" max="20">
+          <div class="attendance-field">
+            <label for="attendance-date">Date</label>
+            <input type="date" id="attendance-date">
+          </div>
 
-            <div id="ct2-section" style="display: none;">
-              <label>CT-2 Marks (20)</label>
-              <input type="number" id="ct2-marks" min="0" max="20">
-            </div>
+          <div class="attendance-field">
+            <label for="attendance-class-number">Class Number</label>
+            <select id="attendance-class-number">
+              <option value="">Select Class</option>
+              <option value="1">Class 1</option>
+              <option value="2">Class 2</option>
+              <option value="3">Class 3</option>
+            </select>
+          </div>
 
-            <button type="button" id="show-ct2">
-              Enter CT-2 Marks
+        </div>
+        <!-- Students Attendance Table -->
+        <div class="attendance-table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Student</th>
+                <th>Student ID</th>
+                <th>Attendance</th>
+              </tr>
+            </thead>
+            <tbody id="attendance-students-body">
+            </tbody>
+          </table>
+        </div>
+        <!-- Save Button -->
+        <div class="attendance-actions">
+          <button type="button" id="save-attendance">
+            Save Attendance
+          </button>
+        </div>
+      </section>
+      <section class="pending-assignments" id="assignments">
+        <div class="section-header">
+          <div>
+            <h3>Assignments</h3>
+            <p>Manage assignments semester-wise and subject-wise</p>
+          </div>
+        </div>
+        <div class="assignment-filters">
+          <div class="filter-group">
+            <label for="assignment-branch">Branch</label>
+
+            <select id="assignment-branch">
+              <option value="">Select Branch</option>
+              <option value="CSE">Computer Science Engineering</option>
+              <option value="MIN">Mining Engineering</option>
+              <option value="ME">Mechanical Engineering</option>
+              <option value="EE">Electrical Engineering</option>
+              <option value="CE">Civil Engineering</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="assignment-semester">Semester</label>
+
+            <select id="assignment-semester">
+              <option value="">Select Semester</option>
+              <option value="1">1st Semester</option>
+              <option value="2">2nd Semester</option>
+              <option value="3">3rd Semester</option>
+              <option value="4">4th Semester</option>
+              <option value="5">5th Semester</option>
+              <option value="6">6th Semester</option>
+              <option value="7">7th Semester</option>
+              <option value="8">8th Semester</option>
+            </select>
+          </div>
+        </div>
+        <div class="assignment-subjects">
+          <h4>Subjects</h4>
+
+          <div id="assignment-subject-list">
+            <p class="empty-message">
+              Select branch and semester to view subjects.
+            </p>
+          </div>
+        </div>
+        <div class="assignment-list">
+          <div id="create-assignment-form" class="create-assignment-form page-hidden">
+            <h4>Create Assignment</h4>
+
+            <p>
+              Subject:
+              <strong id="selected-assignment-subject">-</strong>
+            </p>
+
+            <input type="text" id="assignment-title" placeholder="Assignment Title" />
+
+            <textarea id="assignment-description" placeholder="Assignment Description">
+              </textarea>
+
+            <input type="date" id="assignment-due-date" />
+
+            <button id="create-assignment-btn" class="report-btn">
+              Create Assignment
+            </button>
+          </div>
+          <h4>Assignments</h4>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Assignment Title</th>
+                <th>Subject</th>
+                <th>Due Date</th>
+                <th>Submissions</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody id="faculty-assignment-body">
+              <tr>
+                <td colspan="5">No assignments selected.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section class="faculty-submissions page-hidden" id="submissions">
+
+        <div class="section-header">
+          <div>
+            <h3>Assignment Submissions</h3>
+            <p>Review student assignment submissions</p>
+          </div>
+        </div>
+
+        <div class="submission-list">
+
+          <table>
+            <thead>
+              <tr>
+                <th>Student</th>
+                <th>Assignment</th>
+                <th>Subject</th>
+                <th>Submitted Date</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody id="faculty-submission-body">
+
+              <tr>
+                <td colspan="6">
+                  No submissions yet.
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+
+        </div>
+
+        <div id="review-submission-box" class="review-submission-box page-hidden">
+
+          <h4>Review Submission</h4>
+
+          <p>
+            Student:
+            <strong id="review-student">-</strong>
+          </p>
+
+          <p>
+            Assignment:
+            <strong id="review-assignment">-</strong>
+          </p>
+          <label class="hard-copy-check">
+            <input type="checkbox" id="hard-copy-received">
+            Hard copy received
+          </label>
+
+          <textarea id="review-remarks" placeholder="Enter professor remarks..."></textarea>
+
+          <div class="review-actions">
+
+            <button type="button" id="approve-submission-btn" class="approve-btn">
+              Approve
             </button>
 
-            <button id="save-result">Save CT Marks</button>
+            <button type="button" id="reject-submission-btn" class="reject-btn">
+              Reject
+            </button>
+
           </div>
 
+        </div>
+      </section>
+      <section class="faculty-results page-hidden" id="results">
 
-          <!-- Semester Result -->
-          <div class="result-box">
-            <h4>Semester Result</h4>
-
-            <p>Review student semester results.</p>
-
-            <table>
-              <thead>
-                <tr>
-                  <th>Student</th>
-                  <th>Semester</th>
-                  <th>Status</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-
-              <tbody id="semester-result-body">
-              </tbody>
-            </table>
+        <div class="section-header">
+          <div>
+            <h3>Results</h3>
+            <p>Manage CT marks and semester results</p>
           </div>
+        </div>
+
+        <!-- Internal Marks -->
+        <div class="result-box">
+          <h4>CT Marks</h4>
+
+          <label>Semester</label>
+          <select id="result-semester">
+            <option value="">Select Semester</option>
+            <option value="1">1st Semester</option>
+            <option value="2">2nd Semester</option>
+            <option value="3">3rd Semester</option>
+            <option value="4">4th Semester</option>
+            <option value="5">5th Semester</option>
+            <option value="6">6th Semester</option>
+            <option value="7">7th Semester</option>
+            <option value="8">8th Semester</option>
+          </select>
+
+          <label>Student</label>
+          <select id="result-student">
+            <option value="">Select Student</option>
+          </select>
+
+          <label>Subject</label>
+          <select id="result-subject">
+            <option value="">Select Subject</option>
+          </select>
+
+          <label>CT-1 Marks (20)</label>
+          <input type="number" id="ct1-marks" min="0" max="20">
+
+          <div id="ct2-section" style="display: none;">
+            <label>CT-2 Marks (20)</label>
+            <input type="number" id="ct2-marks" min="0" max="20">
+          </div>
+
+          <button type="button" id="show-ct2">
+            Enter CT-2 Marks
+          </button>
+
+          <button id="save-result">Save CT Marks</button>
+        </div>
+
+
+        <!-- Semester Result -->
+        <div class="result-box">
+          <h4>Semester Result</h4>
+
+          <p>Review student semester results.</p>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Student</th>
+                <th>Semester</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody id="semester-result-body">
+            </tbody>
+          </table>
+        </div>
     </div>
 
     </section>
@@ -503,6 +503,29 @@
         </div>
       </div>
     </section>
+    </div>
+    <div id="assignment-submissions-modal" class="page-hidden">
+      <div>
+        <h3>Assignment Submissions</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Student</th>
+              <th>Assignment</th>
+              <th>Subject</th>
+              <th>Submitted Date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+
+          <tbody id="assignment-submission-body"></tbody>
+        </table>
+
+        <button id="close-assignment-submissions">
+          Close
+        </button>
+      </div>
     </div>
   </main>
   <script src="js/Faculty/dashboard.js"></script>
