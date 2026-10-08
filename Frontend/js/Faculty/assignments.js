@@ -160,9 +160,9 @@ async function loadFacultyAssignments() {
                 <td>${assignment.title}</td>
                 <td>${assignment.subject}</td>
                 <td>${assignment.due_date}</td>
-                <td>0</td>
+                <td>${assignment.submissions_count || 0}</td>
                 <td>
-                    <button class="view-btn">View</button>
+                    <button class="view-btn" data-assignment-id="${assignment.id}">View</button>
                 </td>
             `;
 
@@ -172,4 +172,49 @@ async function loadFacultyAssignments() {
         console.error("Faculty Assignments Error:", error);
     }
 }
+
+document
+    .getElementById("assignment-branch")
+    .addEventListener("change", loadAssignmentSubjects);
+
+document
+    .getElementById("assignment-semester")
+    .addEventListener("change", loadAssignmentSubjects);
+
 loadFacultyAssignments();
+
+document.addEventListener("click", async function (event) {
+    if (!event.target.classList.contains("view-btn")) {
+        return;
+    }
+    const assignmentId = event.target.dataset.assignmentId;
+    console.log("Selected Assignment ID:", assignmentId);
+
+    try {
+        const response = await fetch(
+            "http://127.0.0.1:8000/api/faculty-submissions/",
+            {
+                credentials: "include",
+            }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            alert(data.error || "Unable to load submissions.");
+            return;
+        }
+
+        console.log("Submissions:", data);
+        const assignmentId = event.target.dataset.assignmentId;
+
+        const submissions = data.submissions.filter(function (submission) {
+            return submission.assignment_id == assignmentId;
+        });
+
+        console.log("Selected Assignment Submissions:", submissions);
+
+    } catch (error) {
+        console.error("View Submission Error:", error);
+    }
+});

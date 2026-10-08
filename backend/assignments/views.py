@@ -135,12 +135,17 @@ def faculty_assignments(request):
 
     for assignment in assignments:
 
+        submission_count = AssignmentSubmission.objects.filter(
+            assignment=assignment
+        ).count()
+
         data.append({
             'id': assignment.id,
             'title': assignment.title,
             'subject': assignment.subject_ref.subject_name,
             'due_date': assignment.due_date,
             'description': assignment.description,
+            'submissions_count': submission_count,
         })
 
     return JsonResponse({
@@ -255,6 +260,7 @@ def faculty_submissions(request):
 
         data.append({
             'id': submission.id,
+            'assignment_id': submission.assignment.id,
             'student': submission.student.username,
             'assignment': submission.assignment.title,
             'subject': submission.assignment.subject,

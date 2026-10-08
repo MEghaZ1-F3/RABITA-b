@@ -179,3 +179,4 @@ document.getElementById(
     reviewSubmission("rejected");
 
 });
+loadFacultySubmissions();
