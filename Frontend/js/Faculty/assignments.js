@@ -214,8 +214,20 @@ document.addEventListener("click", async function (event) {
 
         console.log("Selected Assignment Submissions:", submissions);
         submissions.forEach(function (submission) {
-            console.log("Student:", submission.student);
-            console.log("Status:", submission.status);
+            const row = document.createElement("tr");
+
+            row.innerHTML = `
+                    <td>${submission.student}</td>
+                    <td>${submission.assignment}</td>
+                    <td>${submission.subject}</td>
+                    <td>${submission.submitted_at}</td>
+                    <td>${submission.status}</td>
+                    <td>
+                        <button class="view-btn">View</button>
+                    </td>
+                `;
+
+            document.getElementById("faculty-submission-body").appendChild(row);
         });
 
     } catch (error) {
