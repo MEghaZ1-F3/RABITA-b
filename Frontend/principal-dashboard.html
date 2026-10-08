@@ -19,7 +19,7 @@
         <li><a href="#approvals">Approvals</a></li>
         <li><a href="#notices">Notices</a></li>
         <li><a href="#reports">Reports</a></li>
-        <li><a href="#logout">Logout</a></li>
+        <li><a href="#logout" onclick="logoutPrincipal()">Logout</a></li>
       </ul>
     </nav>
   </aside>
@@ -164,6 +164,26 @@
         <div class="notices-container" id="college-notices-container">
         </div>
       </section>
+      <section class="college-reports page-hidden" id="reports">
+        <div class="section-header">
+          <h2>College Reports</h2>
+          <p>College statistics and reports</p>
+        </div>
+        <div class="summary-cards">
+          <div class="summary-card">
+            <h3>Total Students</h3>
+            <p class="card-number" id="report-total-students">0</p>
+          </div>
+          <div class="summary-card">
+            <h3>Total Faculty</h3>
+            <p class="card-number" id="report-total-faculty">0</p>
+          </div>
+          <div class="summary-card">
+            <h3>Pending Approvals</h3>
+            <p class="card-number" id="report-pending-students">0</p>
+          </div>
+        </div>
+      </section>
     </div>
   </main>
   <script src="js/Principal/dashboard.js"></script>
@@ -171,6 +191,7 @@
   <script src="js/Principal/faculty.js"></script>
   <script src="js/Principal/approval.js"></script>
   <script src="js/Principal/notices.js"></script>
+  <script src="js/Principal/reports.js"></script>
 </body>
 
 </html>

@@ -221,6 +221,7 @@ document.querySelectorAll(".sidebar-nav a").forEach(function (link) {
         document.getElementById("faculty").style.display = "none";
         document.getElementById("approvals").style.display = "none";
         document.getElementById("notices").style.display = "none";
+        document.getElementById("reports").style.display = "none";
 
         // Students //
         if (sectionId === "students") {
@@ -238,7 +239,7 @@ document.querySelectorAll(".sidebar-nav a").forEach(function (link) {
             loadCollegeFaculty();
         }
 
-        // Approvals
+        // Approvals//
         if (sectionId === "approvals") {
 
             document.getElementById("approvals").style.display = "block";
@@ -246,12 +247,20 @@ document.querySelectorAll(".sidebar-nav a").forEach(function (link) {
             loadStudentApprovals();
         }
 
-        // Notices
+        // Notices//
         if (sectionId === "notices") {
 
             document.getElementById("notices").style.display = "block";
 
             loadCollegeNotices();
+        }
+
+        // Reports//
+        if (sectionId === "reports") {
+
+            document.getElementById("reports").style.display = "block";
+
+            loadCollegeReports();
         }
 
         // Dashboard//
@@ -267,3 +276,19 @@ document.querySelectorAll(".sidebar-nav a").forEach(function (link) {
     });
 
 });
+async function logoutPrincipal() {
+    try {
+        await fetch(
+            "http://127.0.0.1:8000/api/logout/",
+            {
+                method: "POST",
+                credentials: "include"
+            }
+        );
+
+        window.location.href = "login.html";
+
+    } catch (error) {
+        console.error("Logout Error:", error);
+    }
+}
