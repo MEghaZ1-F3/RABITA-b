@@ -85,10 +85,15 @@ async function loadAttendanceStudents() {
         }
 
         const students = data.filter(function (student) {
-
             return String(student.semester) === semester;
 
         });
+
+        const studentCount = document.getElementById("attendance-student-count");
+        if (studentCount) {
+            studentCount.textContent =
+                `Total Students: ${students.length}`;
+        }
 
         if (students.length === 0) {
 
@@ -315,3 +320,37 @@ document
         "change",
         loadSavedAttendance
     );
+
+// ADD ATTENDANCE CLASS//
+
+const addClassButton = document.getElementById("add-attendance-class");
+const classSelect = document.getElementById("attendance-class-number");
+
+addClassButton.addEventListener("click", function () {
+
+    const semester = attendanceSemester.value;
+
+    if (!semester) {
+        alert("Please select semester first.");
+        return;
+    }
+
+    const nextClassNumber = classSelect.options.length;
+
+    const option = document.createElement("option");
+
+    option.value = nextClassNumber;
+    option.textContent = `Class ${nextClassNumber}`;
+
+    classSelect.appendChild(option);
+
+    classSelect.value = nextClassNumber;
+
+    console.log("Class Added:", nextClassNumber);
+});
+
+attendanceSubject.addEventListener("change", loadAttendanceStudents);
+
+document
+    .getElementById("attendance-class-number")
+    .addEventListener("change", loadAttendanceStudents);

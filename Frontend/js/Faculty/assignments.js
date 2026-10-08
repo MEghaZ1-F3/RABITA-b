@@ -223,7 +223,7 @@ document.addEventListener("click", async function (event) {
         );
 
         const tableBody = document.getElementById(
-            "faculty-submission-body"
+            "assignment-submission-body"
         );
 
         tableBody.innerHTML = "";
@@ -232,7 +232,7 @@ document.addEventListener("click", async function (event) {
 
             tableBody.innerHTML = `
                 <tr>
-                    <td colspan="6">
+                    <td colspan="5">
                         No submissions for this assignment.
                     </td>
                 </tr>
@@ -264,6 +264,10 @@ document.addEventListener("click", async function (event) {
             tableBody.appendChild(row);
         });
 
+        document
+            .getElementById("assignment-submissions-modal")
+            .classList.remove("page-hidden");
+
     } catch (error) {
 
         console.error(
@@ -272,3 +276,11 @@ document.addEventListener("click", async function (event) {
         );
     }
 });
+
+document
+    .getElementById("close-assignment-submissions")
+    .addEventListener("click", function () {
+        document
+            .getElementById("assignment-submissions-modal")
+            .classList.add("page-hidden");
+    });

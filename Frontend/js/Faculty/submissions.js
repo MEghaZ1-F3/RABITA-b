@@ -180,3 +180,13 @@ document.getElementById(
 
 });
 loadFacultySubmissions();
+
+document
+    .getElementById("close-review-btn")
+    .addEventListener("click", function () {
+
+        document
+            .getElementById("review-submission-box")
+            .classList.add("page-hidden");
+
+    });

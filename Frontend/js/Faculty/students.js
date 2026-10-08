@@ -17,9 +17,25 @@ async function loadStudents() {
             return;
         }
 
-        const students = await response.json();
+        const data = await response.json();
 
-        console.log("Faculty Students:", students);
+        const semester =
+            document.getElementById("student-semester").value;
+
+        // Semester select nahi kiya
+        if (!semester) {
+            document.getElementById("faculty-students-body").innerHTML = "";
+            document.getElementById("student-count").textContent =
+                "0 Students";
+            return;
+        }
+
+        // Selected semester ke students
+        const students = data.filter(function (student) {
+            return String(student.semester) === semester;
+        });
+
+        console.log("Filtered Students:", students);
 
         const tableBody = document.getElementById(
             "faculty-students-body"
@@ -28,17 +44,10 @@ async function loadStudents() {
         const studentCount =
             document.getElementById("student-count");
 
-        if (!tableBody) {
-            console.error("Students table not found");
-            return;
-        }
-
         tableBody.innerHTML = "";
 
         studentCount.textContent =
-            `${students.length} ${students.length === 1
-                ? "Student"
-                : "Students"
+            `${students.length} ${students.length === 1 ? "Student" : "Students"
             }`;
 
         students.forEach(function (student) {
@@ -46,30 +55,30 @@ async function loadStudents() {
             const row = document.createElement("tr");
 
             row.innerHTML = `
-        <td>${student.name}</td>
+                <td>${student.name}</td>
 
-        <td>
-          ${student.student_id ||
+                <td>
+                    ${student.student_id ||
                 student.temporary_id ||
                 "-"}
-        </td>
+                </td>
 
-        <td>${student.branch || "-"}</td>
+                <td>${student.branch || "-"}</td>
 
-        <td>${student.semester || "-"}</td>
+                <td>${student.semester || "-"}</td>
 
-        <td>
-          <span class="student-status ${student.approval_status}">
-            ${student.approval_status}
-          </span>
-        </td>
+                <td>
+                    <span class="student-status ${student.approval_status}">
+                        ${student.approval_status}
+                    </span>
+                </td>
 
-        <td>
-          <button class="student-view-btn">
-            View
-          </button>
-        </td>
-      `;
+                <td>
+                    <button class="student-view-btn">
+                        View
+                    </button>
+                </td>
+            `;
 
             const viewButton =
                 row.querySelector(".student-view-btn");
@@ -139,6 +148,16 @@ async function loadStudents() {
         );
     }
 }
+
+
+/* Semester Change */
+
+document
+    .getElementById("student-semester")
+    .addEventListener(
+        "change",
+        loadStudents
+    );
 
 
 /* Close Student Details Modal */

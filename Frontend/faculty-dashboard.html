@@ -92,10 +92,22 @@
             <h3>My Students</h3>
             <p>Students assigned to your branch</p>
           </div>
-
           <span class="student-count" id="student-count"> 0 Students </span>
         </div>
-
+        <div class="student-filter">
+          <label for="student-semester">Semester</label>
+          <select id="student-semester">
+            <option value="">Select Semester</option>
+            <option value="1">1st Semester</option>
+            <option value="2">2nd Semester</option>
+            <option value="3">3rd Semester</option>
+            <option value="4">4th Semester</option>
+            <option value="5">5th Semester</option>
+            <option value="6">6th Semester</option>
+            <option value="7">7th Semester</option>
+            <option value="8">8th Semester</option>
+          </select>
+        </div>
         <div class="student-table-container">
           <table>
             <thead>
@@ -203,22 +215,24 @@
               <option value="">Select Subject</option>
             </select>
           </div>
-
           <div class="attendance-field">
             <label for="attendance-date">Date</label>
             <input type="date" id="attendance-date">
           </div>
-
           <div class="attendance-field">
-            <label for="attendance-class-number">Class Number</label>
+            <label for="attendance-class-number">Class</label>
             <select id="attendance-class-number">
               <option value="">Select Class</option>
-              <option value="1">Class 1</option>
-              <option value="2">Class 2</option>
-              <option value="3">Class 3</option>
             </select>
+            <button type="button" id="add-attendance-class">
+              + Add Class
+            </button>
           </div>
-
+        </div>
+        <div class="attendance-student-count">
+          <span id="attendance-student-count">
+            Total Students: 0
+          </span>
         </div>
         <!-- Students Attendance Table -->
         <div class="attendance-table-container">
@@ -384,32 +398,28 @@
           <textarea id="review-remarks" placeholder="Enter professor remarks..."></textarea>
 
           <div class="review-actions">
-
+            <button type="button" id="close-review-btn" class="report-btn">
+              Close
+            </button>
             <button type="button" id="approve-submission-btn" class="approve-btn">
               Approve
             </button>
-
             <button type="button" id="reject-submission-btn" class="reject-btn">
               Reject
             </button>
-
           </div>
-
         </div>
       </section>
       <section class="faculty-results page-hidden" id="results">
-
         <div class="section-header">
           <div>
             <h3>Results</h3>
             <p>Manage CT marks and semester results</p>
           </div>
         </div>
-
         <!-- Internal Marks -->
         <div class="result-box">
           <h4>CT Marks</h4>
-
           <label>Semester</label>
           <select id="result-semester">
             <option value="">Select Semester</option>
@@ -422,39 +432,29 @@
             <option value="7">7th Semester</option>
             <option value="8">8th Semester</option>
           </select>
-
           <label>Student</label>
           <select id="result-student">
             <option value="">Select Student</option>
           </select>
-
           <label>Subject</label>
           <select id="result-subject">
             <option value="">Select Subject</option>
           </select>
-
           <label>CT-1 Marks (20)</label>
           <input type="number" id="ct1-marks" min="0" max="20">
-
           <div id="ct2-section" style="display: none;">
             <label>CT-2 Marks (20)</label>
             <input type="number" id="ct2-marks" min="0" max="20">
           </div>
-
           <button type="button" id="show-ct2">
             Enter CT-2 Marks
           </button>
-
           <button id="save-result">Save CT Marks</button>
         </div>
-
-
         <!-- Semester Result -->
         <div class="result-box">
           <h4>Semester Result</h4>
-
           <p>Review student semester results.</p>
-
           <table>
             <thead>
               <tr>
@@ -464,13 +464,11 @@
                 <th>Action</th>
               </tr>
             </thead>
-
             <tbody id="semester-result-body">
             </tbody>
           </table>
         </div>
     </div>
-
     </section>
     <section class="recent-notices" id="notices">
       <h3>Recent Notices</h3>
@@ -482,20 +480,17 @@
           <p>View academic and attendance reports</p>
         </div>
       </div>
-
       <div class="report-cards">
         <div class="report-card">
           <h4>Attendance Report</h4>
           <p>View student attendance performance.</p>
           <button class="report-btn">View Report</button>
         </div>
-
         <div class="report-card">
           <h4>Assignment Report</h4>
           <p>View assignment submission details.</p>
           <button class="report-btn">View Report</button>
         </div>
-
         <div class="report-card">
           <h4>Student Performance</h4>
           <p>View student academic performance.</p>
@@ -503,11 +498,9 @@
         </div>
       </div>
     </section>
-    </div>
     <div id="assignment-submissions-modal" class="page-hidden">
       <div>
         <h3>Assignment Submissions</h3>
-
         <table>
           <thead>
             <tr>
@@ -518,10 +511,8 @@
               <th>Status</th>
             </tr>
           </thead>
-
           <tbody id="assignment-submission-body"></tbody>
         </table>
-
         <button id="close-assignment-submissions">
           Close
         </button>
@@ -536,7 +527,6 @@
   <script src="js/Faculty/results.js"></script>
   <script src="js/Faculty/notices.js"></script>
   <script src="js/Faculty/reports.js"></script>
-  <script src="js/faculty.js"></script>
 </body>
 
 </html>
