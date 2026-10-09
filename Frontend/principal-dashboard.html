@@ -79,6 +79,27 @@
           <h2>Students</h2>
           <p>View all registered students</p>
         </div>
+        <div class="student-filters">
+          <select id="principal-student-branch">
+            <option value="">Select Branch</option>
+            <option value="CSE">CSE</option>
+            <option value="MIN">MIN</option>
+            <option value="ME">ME</option>
+            <option value="EE">EE</option>
+            <option value="CE">CE</option>
+          </select>
+          <select id="principal-student-semester">
+            <option value="">Select Semester</option>
+            <option value="1">Semester 1</option>
+            <option value="2">Semester 2</option>
+            <option value="3">Semester 3</option>
+            <option value="4">Semester 4</option>
+            <option value="5">Semester 5</option>
+            <option value="6">Semester 6</option>
+            <option value="7">Semester 7</option>
+            <option value="8">Semester 8</option>
+          </select>
+        </div>
         <div class="student-table-container">
           <table>
             <thead>
@@ -136,7 +157,7 @@
           </table>
         </div>
       </section>
-      <section class="pending-approvals">
+      <section class="pending-approvals" id="dashboard-pending-approvals">
         <h3>Pending Approvals</h3>
         <table>
           <thead>
