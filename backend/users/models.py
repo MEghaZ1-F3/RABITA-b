@@ -23,6 +23,20 @@ class User(AbstractUser):
         ('lateral', 'Lateral Entry'),
     )
 
+    FACULTY_TYPE_CHOICES = (
+        ('regular', 'Regular Faculty'),
+        ('guest', 'Guest Faculty'),
+    )
+
+    is_hod = models.BooleanField(default=False)
+
+    faculty_type = models.CharField(
+        max_length=20,
+        choices=FACULTY_TYPE_CHOICES,
+        blank=True,
+        null=True
+    )
+
     role = models.CharField(
         max_length=20,
         choices=ROLE_CHOICES,
@@ -93,36 +107,50 @@ class User(AbstractUser):
         default='pending'
     )
 
-
-
     def clean(self):
         from django.core.exceptions import ValidationError
 
+        if self.is_hod:
+            if self.role != 'faculty':
+                raise ValidationError("Only faculty can be HOD.")
+
+            if self.faculty_type != 'regular':
+                raise ValidationError("Only regular faculty can be HOD.")
+
+            existing_hod = User.objects.filter(
+                role='faculty',
+                branch=self.branch,
+                is_hod=True
+            ).exclude(pk=self.pk)
+
+            if existing_hod.exists():
+                raise ValidationError("This branch already has an HOD.")
+
         if self.role == 'student':
+            if self.entry_type == 'regular':
+                if not self.semester or not 1 <= self.semester <= 8:
+                    raise ValidationError(
+                        "Regular students can select semesters 1 to 8."
+                    )
 
-            # Regular 1st semester ke liye 
-            if self.entry_type == 'regular' and self.semester == 1:
-                pass
+            elif self.entry_type == 'lateral':
+                if not self.semester or not 3 <= self.semester <= 8:
+                    raise ValidationError(
+                        "Lateral Entry students can select semesters 3 to 8."
+                    )
 
-            # Lateral 3rd semester ke liye
-            elif self.entry_type == 'lateral' and self.semester == 3:
-                pass
-
-            # Baaki semesters me enrollment dena padega
-            elif not self.enrollment_number:
+            if self.semester not in (1, 3) and not self.enrollment_number:
                 raise ValidationError(
                     "Enrollment number is required for this semester."
                 )
-
-
 
     def save(self, *args, **kwargs):
 
         if self.role == 'student':
 
-           
+
             # Prefix hai
-           
+
             if self.entry_type == 'regular':
                 prefix = 'MZ'
             else:
@@ -130,9 +158,9 @@ class User(AbstractUser):
 
             year = str(self.admission_year)[-2:]
 
-           
+
             # Final Student ID hai
-           
+
             if self.enrollment_number:
 
                 self.student_id = (
@@ -142,9 +170,9 @@ class User(AbstractUser):
                 # Temporary ID no longer needed
                 self.temporary_id = None
 
-           
+
             # Temporary ID hai
-          
+
             elif not self.temporary_id:
 
                 # Temporary ID only for:

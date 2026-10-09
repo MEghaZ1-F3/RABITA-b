@@ -117,37 +117,25 @@ def me_view(request):
         'approval_status': user.approval_status,
     })
 def faculty_list(request):
-
     if not request.user.is_authenticated:
-        return JsonResponse(
-            {'error': 'Login required'},
-            status=401
-        )
+        return JsonResponse({'error': 'Login required'}, status=401)
 
     if request.user.role != 'principal':
-        return JsonResponse(
-            {'error': 'Access denied'},
-            status=403
-        )
+        return JsonResponse({'error': 'Access denied'}, status=403)
 
-    faculty_members = User.objects.filter(
-        role='faculty'
-    )
+    faculty_members = User.objects.filter(role='faculty')
 
     data = []
 
     for faculty in faculty_members:
-
         data.append({
             'id': faculty.id,
             'name': faculty.username,
             'branch': faculty.branch,
+            'faculty_type': faculty.faculty_type,
         })
 
-    return JsonResponse(
-        data,
-        safe=False
-    )
+    return JsonResponse(data, safe=False)
 @csrf_exempt
 def update_student_approval(request):
 

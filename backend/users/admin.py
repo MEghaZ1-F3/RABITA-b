@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.html import format_html
 from django.contrib.auth.admin import UserAdmin
 
 from .models import User
@@ -7,6 +8,9 @@ from .forms import CustomUserCreationForm
 
 @admin.register(User)
 class CustomUserAdmin(UserAdmin):
+
+    class Media:
+        js = ('users/js/user_admin.js',)
 
     add_form = CustomUserCreationForm
 
@@ -18,6 +22,8 @@ class CustomUserAdmin(UserAdmin):
                 'password1',
                 'password2',
                 'role',
+                'faculty_type',
+                'is_hod',
                 'branch',
                 'entry_type',
                 'semester',
@@ -31,6 +37,8 @@ class CustomUserAdmin(UserAdmin):
         ('College Information', {
             'fields': (
                 'role',
+                'faculty_type',
+                'is_hod',
                 'branch',
                 'entry_type',
                 'semester',
@@ -46,6 +54,7 @@ class CustomUserAdmin(UserAdmin):
     list_display = (
         'username',
         'role',
+        'faculty_type',
         'branch',
         'semester',
         'entry_type',
@@ -56,6 +65,7 @@ class CustomUserAdmin(UserAdmin):
 
     list_filter = (
         'role',
+        'faculty_type',
         'branch',
         'semester',
         'entry_type',
