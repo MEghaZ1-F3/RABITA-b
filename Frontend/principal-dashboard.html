@@ -100,39 +100,93 @@
             <option value="8">Semester 8</option>
           </select>
         </div>
-        <div class="student-table-container">
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Student ID</th>
-                <th>Branch</th>
-                <th>Semester</th>
-                <th>Entry Type</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody id="college-students-body">
-            </tbody>
-          </table>
+        <div style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px;">
+          <div>
+            <h3>Approved Students</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Student ID</th>
+                  <th>Entry Type</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="principal-approved-students-body">
+                <tr>
+                  <td colspan="4">Select branch and semester.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <h3>Rejected Students</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Student ID</th>
+                  <th>Entry Type</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="principal-rejected-students-body">
+                <tr>
+                  <td colspan="4">Select branch and semester.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </section>
       <section class="College-faculty page-hidden" id="faculty">
         <div class="section-header">
           <h2>Faculty</h2>
-          <p>View all college faculty</p>
+          <p>View faculty by branch</p>
         </div>
-        <div class="faculty-table-container">
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Branch</th>
-              </tr>
-            </thead>
-            <tbody id="college-faculty-body">
-            </tbody>
-          </table>
+        <div class="faculty-filters">
+          <select id="principal-faculty-branch">
+            <option value="">Select Branch</option>
+            <option value="CSE">CSE</option>
+            <option value="MIN">MIN</option>
+            <option value="ME">ME</option>
+            <option value="EE">EE</option>
+            <option value="CE">CE</option>
+          </select>
+        </div>
+        <div class="faculty-lists" style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px;">
+          <div>
+            <h3>Regular Faculty</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Branch</th>
+                </tr>
+              </thead>
+              <tbody id="principal-regular-faculty-body">
+                <tr>
+                  <td colspan="2">Select branch.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <h3>Guest Faculty</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Branch</th>
+                </tr>
+              </thead>
+              <tbody id="principal-guest-faculty-body">
+                <tr>
+                  <td colspan="2">Select branch.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </section>
       <section class="principal-approvals page-hidden" id="approvals">
