@@ -16,7 +16,7 @@ class AttendanceAdmin(admin.ModelAdmin):
     list_filter = (
         'subject',
         'date',
-        
+        'class_number',
         'status',
     )
 
