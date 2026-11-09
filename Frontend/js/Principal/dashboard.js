@@ -292,3 +292,21 @@ async function logoutPrincipal() {
         console.error("Logout Error:", error);
     }
 }
+async function loadStudentCounts() {
+    try {
+        const response = await fetch("http://127.0.0.1:8000/students/", {
+            credentials: "include"
+        });
+
+        const students = await response.json();
+
+        if (!response.ok) {
+            throw new Error(students.error || "Unable to load students.");
+        }
+
+    } catch (error) {
+        console.error("Student Counts Error:", error);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", loadStudentCounts);
