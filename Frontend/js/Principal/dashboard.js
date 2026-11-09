@@ -304,6 +304,11 @@ async function loadStudentCounts() {
             throw new Error(students.error || "Unable to load students.");
         }
 
+
+
+        document.getElementById("rejected-students-count").textContent =
+            students.filter(s => s.approval_status === "rejected").length;
+
     } catch (error) {
         console.error("Student Counts Error:", error);
     }
