@@ -91,18 +91,20 @@ async function loadStudentApprovals() {
 
     }
 }
+
 async function updateApproval(studentId, status) {
     try {
         const response = await fetch(
             "http://127.0.0.1:8000/api/update-student-approval/",
             {
-                method: "PATCH",
+                method: "POST",
                 credentials: "include",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    approval_status: status
+                    student_id: studentId,
+                    status: status
                 })
             }
         );
@@ -115,6 +117,8 @@ async function updateApproval(studentId, status) {
 
         await loadStudentApprovals();
         await loadStudentCounts();
+
+        alert(result.message);
 
     } catch (error) {
         console.error("Approval Update Error:", error);
