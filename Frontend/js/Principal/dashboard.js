@@ -304,6 +304,8 @@ async function loadStudentCounts() {
             throw new Error(students.error || "Unable to load students.");
         }
 
+        document.getElementById("approved-students-count").textContent =
+            students.filter(s => s.approval_status === "approved").length;
 
         document.getElementById("pending-students-count").textContent =
             students.filter(s => s.approval_status === "pending").length;
