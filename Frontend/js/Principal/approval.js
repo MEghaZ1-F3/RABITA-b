@@ -91,3 +91,33 @@ async function loadStudentApprovals() {
 
     }
 }
+async function updateApproval(studentId, status) {
+    try {
+        const response = await fetch(
+            `http://127.0.0.1:8000/students/${studentId}/approval/`,
+            {
+                method: "PATCH",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    approval_status: status
+                })
+            }
+        );
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(result.error || "Approval update failed.");
+        }
+
+        await loadStudentApprovals();
+        await loadStudentCounts();
+
+    } catch (error) {
+        console.error("Approval Update Error:", error);
+        alert(error.message);
+    }
+}
