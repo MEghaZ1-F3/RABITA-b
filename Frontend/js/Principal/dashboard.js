@@ -305,6 +305,8 @@ async function loadStudentCounts() {
         }
 
 
+        document.getElementById("pending-students-count").textContent =
+            students.filter(s => s.approval_status === "pending").length;
 
         document.getElementById("rejected-students-count").textContent =
             students.filter(s => s.approval_status === "rejected").length;
