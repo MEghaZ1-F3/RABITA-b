@@ -94,7 +94,7 @@ async function loadStudentApprovals() {
 async function updateApproval(studentId, status) {
     try {
         const response = await fetch(
-            `http://127.0.0.1:8000/students/${studentId}/approval/`,
+            "http://127.0.0.1:8000/api/update-student-approval/",
             {
                 method: "PATCH",
                 credentials: "include",
