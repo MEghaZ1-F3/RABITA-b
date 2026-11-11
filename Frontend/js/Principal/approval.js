@@ -82,7 +82,7 @@ async function loadStudentApprovals() {
 
         });
 
-    } catch (error) {
+    } catch () {
 
         console.error(
             "Student Approval Error:",
