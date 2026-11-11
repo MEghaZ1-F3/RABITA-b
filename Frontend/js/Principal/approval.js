@@ -98,7 +98,7 @@ async function updateApproval(studentId, status) {
             "http://127.0.0.1:8000/api/update-student-approval/",
             {
                 method: "",
-                credentials: "include",
+                credentials: "",
                 headers: {
                     "Content-Type": "application/json"
                 },
