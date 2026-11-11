@@ -116,7 +116,7 @@ async function updateApproval(studentId, status) {
         }
 
         await loadStudentApprovals();
-        await loadStudentCounts();
+        
 
         alert(result.message);
 
