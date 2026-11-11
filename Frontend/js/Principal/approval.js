@@ -115,8 +115,8 @@ async function updateApproval(studentId, status) {
             throw new Error(result.error || "Approval update failed.");
         }
 
-       
-
+      
+        await loadStudentCounts();
 
         alert(result.message);
 
