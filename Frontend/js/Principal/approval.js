@@ -97,8 +97,8 @@ async function updateApproval(studentId, status) {
         const response = await fetch(
             "http://127.0.0.1:8000/api/update-student-approval/",
             {
-                method: "",
-                credentials: "",
+                method: "POST",
+                credentials: "include",
                 headers: {
                     "Content-Type": "application/json"
                 },
