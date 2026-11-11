@@ -102,9 +102,7 @@ async function updateApproval(studentId, status) {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({
-                    student_id: studentId,
-                    status: status
+               
                 })
             }
         );
