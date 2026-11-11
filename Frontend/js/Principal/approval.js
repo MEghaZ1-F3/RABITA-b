@@ -97,12 +97,14 @@ async function updateApproval(studentId, status) {
         const response = await fetch(
             "http://127.0.0.1:8000/api/update-student-approval/",
             {
-                method: "POST",
+                method: "",
                 credentials: "include",
                 headers: {
                     "Content-Type": "application/json"
                 },
-               
+                body: JSON.stringify({
+                    student_id: studentId,
+                    status: status
                 })
             }
         );
